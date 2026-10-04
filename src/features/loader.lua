@@ -36,6 +36,7 @@ function require(name)
         return result
     else
         return oldRequire(name)
+    end
 end
 
 local AssetCache = {}
