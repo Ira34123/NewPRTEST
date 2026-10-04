@@ -1,7 +1,7 @@
 local COMMIT = ""
 
 local BASE =
-    "https://github.com/Ira34123/NewPRTEST"
+    "nil"
     .. COMMIT .. "/"
 
 local Cache = {}
@@ -56,28 +56,6 @@ function inline_asset_b96(path)
 end
 
 
-
-local profiler = require("@src/utility/profiler");
-local feature = {} 
-
-do
-
-    feature.__index = feature;
-    function feature.new(_, id: string, conn: RBXScriptConnection?, func: any?)
-        local self = setmetatable({}, feature);
-
-        self.id = id;
-        self.conn = conn or Instance.new("BindableEvent").Event;
-        self.func = func or function() end;
-        self.update = profiler.wrap_no_xpcall(id, self.func);
-        self.current_connection = nil; 
-
-        aztup.features[id] = self
-
-        return self    
-    end;
-
-end; 
 
 require("@src/globals")
 require("@src/init")
