@@ -1,7 +1,4 @@
 
-local luarmor_finish_tick = tick();
-require("@src/luarmor_init_script");
-
 if not game:IsLoaded() then
     repeat task.wait() until game:IsLoaded();
 end;
@@ -364,12 +361,6 @@ end)
  
 if not aztup.silent_mode then
     Logger.log("Not in silent mode.");
-end;
-
-if luarmor_preload_time_debug or LPH_OBFUSCATED and luarmor_preload_time then
-    Logger.log(string.format("Loaded @ %.2fs, LRM %.2fs.", tick() - env.LOAD_START_TIME, luarmor_finish_tick - (luarmor_preload_time or luarmor_preload_time_debug)));
-else
-    Logger.log(string.format("Loaded in %.2fs.", tick() - env.LOAD_START_TIME));
 end;
 
 loaded_signal:fire(); 
