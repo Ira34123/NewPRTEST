@@ -145,6 +145,28 @@ env.aztup = {
     tabs = {},
 };
 
+local profiler = require("@src/utility/profiler");
+local feature = {} 
+
+do
+
+    feature.__index = feature;
+    function feature.new(_, id: string, conn: RBXScriptConnection?, func: any?)
+        local self = setmetatable({}, feature);
+
+        self.id = id;
+        self.conn = conn or Instance.new("BindableEvent").Event;
+        self.func = func or function() end;
+        self.update = profiler.wrap_no_xpcall(id, self.func);
+        self.current_connection = nil; 
+
+        aztup.features[id] = self
+
+        return self    
+    end;
+
+end; 
+
 local hasnt_accepted_tos = not isfile("Project Rain/tos_accepted_82126_0822UTC0.txt");
 
 env.persistent_data = require("@src/utility/persistent_data");
