@@ -49,10 +49,6 @@ end;
         task.spawn(pcall, require("@src/ui/config_converter"));
         task.spawn(xpcall, require("@src/ui/tabs/ui"), warn, aztup.tabs.UI);
 
-        task.spawn(function()
-            aztup_toggles.mod_detector:SetValue(true);
-        end);
-        
         local start = tick();
         if aztup.automation:has_any() then
             task.spawn(pcall, function()
