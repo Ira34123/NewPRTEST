@@ -18,8 +18,10 @@ return {
             local func, data = require(module);
             
             if not aztup.tabs[data.name] then 
-                continue            
+                print(data)
+				continue            
 			end;
+			print(data, "passed")
             func(aztup.tabs[data.name])
             --xpcall(func, warn, aztup.tabs[data.name]);   
         end
