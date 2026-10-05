@@ -143,13 +143,13 @@ env.aztup = {
 };
 
 local profiler = require("@src/utility/profiler");
-local feature = {} 
+getgenv().Feature = {} 
 
 do
 
-    feature.__index = feature;
-    function feature.new(_, id: string, conn: RBXScriptConnection?, func: any?)
-        local self = setmetatable({}, feature);
+    Feature.__index = Feature;
+    function Feature.new(_, id: string, conn: RBXScriptConnection?, func: any?)
+        local self = setmetatable({}, Feature);
 
         self.id = id;
         self.conn = conn or Instance.new("BindableEvent").Event;
@@ -332,6 +332,26 @@ end)
 chance_store = require("@src/features/auto-parry/data/chance_store")
 getgenv().chance_store = chance_store;
 require(LPH_ENCSTR("@src/ui/ui")).initialize();
+
+
+for _, v in ipairs(features) do
+    for _, path in ipairs(v) do
+        task.spawn(function()
+            local success, result = xpcall(function()
+                return require(path)
+            end, debug.traceback)
+
+            if not success then
+                warn("[FEATURE FAILED]", path)
+                warn(result)
+            else
+                print("[FEATURE LOADED]", path, result)
+            end
+        end)
+
+        task.wait()
+    end
+end
 
 require("@src/features/visuals/player_esp")();
 require("@src/features/visuals/base_esp")();
