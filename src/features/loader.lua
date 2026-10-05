@@ -67,7 +67,7 @@ function require(name)
             name = name .. ".lua"
         end
 
-        local finalName = name:match("([^/]+)$")
+        local finalName = (name:match("([^/]+)$")):gsub("%.lua$", "")
 
         if Cache[name] then
             return Cache[name]
