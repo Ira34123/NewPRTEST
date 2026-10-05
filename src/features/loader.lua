@@ -1,8 +1,57 @@
-local COMMIT = ""
+
+local HttpService = game:GetService("HttpService")
+
+local REPO =
+    "https://api.github.com/repos/Ira34123/NewPRTEST/git/trees/master?recursive=1"
+
+local response = game:HttpGet(REPO)
+local data = HttpService:JSONDecode(response)
+
+function list_modules(pattern)
+    local result = {}
+
+    -- Turn:
+    -- features/auto-parry/data/effects/*
+    --
+    -- into:
+    -- features/auto-parry/data/effects/
+
+    local prefix = pattern:gsub("%*$", "")
+
+    for _, file in ipairs(data.tree or {}) do
+        if file.type == "blob" then
+            local path = file.path
+
+            -- Only look inside src/
+            if path:sub(1, 4) == "src/" then
+                path = path:sub(5)
+            end
+
+            -- Only Lua files
+            if path:sub(-4) == ".lua" then
+                -- Check requested directory
+                if path:sub(1, #prefix) == prefix then
+                    -- Remove .lua
+                    path = path:sub(1, -5)
+
+                    table.insert(result, path)
+                end
+            end
+        end
+    end
+
+    local newresult = {}
+    for i, v in result do
+        table.insert(newresult, "@src/" .. v)
+    end
+
+    return newresult
+end
+
 
 local BASE =
-    "https://github.com/Ira34123/NewPRTEST"
-    .. COMMIT .. "/"
+    "https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master"
+    .. "/"
 
 local Cache = {}
 local oldRequire = require
@@ -17,6 +66,8 @@ function require(name)
             name = name .. ".lua"
         end
 
+        local finalName = name:match("([^/]+)$")
+
         if Cache[name] then
             return Cache[name]
         end
@@ -26,14 +77,19 @@ function require(name)
         local fn = loadstring(source)
 
         if not fn then
-            error("Failed to load " .. name)
+            error("Failed to load " .. BASE .. name)
+            task.wait(100000)
         end
 
         local result = fn()
 
         Cache[name] = result
 
-        return result
+        local data = {
+            name = finalName
+        }
+
+        return result, data
     else
         return oldRequire(name)
     end
@@ -54,6 +110,7 @@ function inline_asset_b96(path)
 
     return data
 end
+
 
 
 
