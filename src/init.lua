@@ -195,13 +195,25 @@ end;
 
 do 
     LPH_NO_VIRTUALIZE(function()
-        function decode_asset(asset)
-            local decoded = services.EncodingService:Base64Decode(buffer.fromstring(asset));
-            local decompress = services.EncodingService:DecompressBuffer(decoded, Enum.CompressionAlgorithm.Zstd);
-            return buffer.tostring(decompress)        
-end;
-        
-        task.spawn(pcall, function()  
+           local function decode_asset(asset)
+		    local success, result = pcall(function()
+		        local decoded = services.EncodingService:Base64Decode(buffer.fromstring(asset))
+		        local decompress = services.EncodingService:DecompressBuffer(
+		            decoded,
+		            Enum.CompressionAlgorithm.Zstd
+		        )
+		
+		        return buffer.tostring(decompress)
+		    end)
+		
+		    if success then
+		        return result
+		    end
+		
+		    return asset
+		end
+		
+		        task.spawn(pcall, function()  
             if not isfile("Project Rain/Assets/proximity.mp3") then
                 writefile("Project Rain/Assets/proximity.mp3", decode_asset(inline_asset_b96("@assets/proximity.mp3")));
             end;
@@ -235,11 +247,6 @@ end;
 
 lexend = require("@src/utility/custom_font");
 
-user_service = require("@src/security/user_service");
-
-if not LPH_OBFUSCATED then
-    getgenv().user_service = user_service;
-end;
 
 if hasnt_accepted_tos then
     require(LPH_ENCSTR("@src/ui/tos"));
