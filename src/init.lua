@@ -333,6 +333,22 @@ chance_store = require("@src/features/auto-parry/data/chance_store")
 getgenv().chance_store = chance_store;
 require(LPH_ENCSTR("@src/ui/ui")).initialize();
 
+local features = {
+    list_modules("features/auto-builder/*"),
+    list_modules("features/auto-fight/*"),
+    list_modules("features/auto-loot/*"),
+    list_modules("features/auto-parry/*"),
+    list_modules("features/buttons/*"),
+    list_modules("features/combat/*"),
+    list_modules("features/exploits/*"),
+    list_modules("features/misc/*"),
+    list_modules("features/movement/*"),
+    list_modules("features/qol/*"),
+    list_modules("features/removals/*"),
+    list_modules("features/spoofing/*"),
+    list_modules("features/visuals/*"),
+    list_modules("features/automation/*"),
+}
 
 for _, v in ipairs(features) do
     for _, path in ipairs(v) do
