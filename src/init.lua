@@ -325,7 +325,7 @@ env.ab_builder = require("@src/features/auto-builder/auto_builder");
 aztup.automation.initialize();
 
 require(("@src/features/auto-parry/block-input-manager"))
-require(("@src/features/loader")).initialize();
+--require(("@src/features/loader")).initialize();
 task.spawn(pcall, function() 
     require(LPH_ENCSTR("@src/features/auto-parry/handlers/animator-handler"));
 end)
