@@ -17,12 +17,12 @@ return {
         for _, module in list_modules("ui/tabs/*") do
             local func, data = require(module);
             
-            if not aztup.tabs[data.name] then 
-                print(data)
+            if not aztup.tabs[string.lower(data.name)] then 
+                print(data.name)
 				continue            
 			end;
-			print(data, "passed")
-            func(aztup.tabs[data.name])
+			print(data.name, "passed")
+            func(aztup.tabs[stringer.lower(data.name)])
             --xpcall(func, warn, aztup.tabs[data.name]);   
         end
 
