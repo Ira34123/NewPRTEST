@@ -24,8 +24,7 @@ return {
 				continue            
 			end;
 			print(name, "passed")
-            func(aztup.tabs[name])
-            --xpcall(func, warn, aztup.tabs[name]);   
+            xpcall(func, warn, aztup.tabs[name]);   
         end
 
         local ThemeManager = require("@src/utility/librarys/managers/ThemeManager");
