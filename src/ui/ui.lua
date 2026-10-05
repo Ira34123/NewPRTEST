@@ -16,14 +16,16 @@ return {
 
         for _, module in list_modules("ui/tabs/*") do
             local func, data = require(module);
-            
-            if not aztup.tabs[data.name] then 
-                print(data.name)
+            local name = data.name
+			name = name:gsub("%.lua$", "")
+			
+            if not aztup.tabs[name] then 
+                print(name)
 				continue            
 			end;
-			print(data.name, "passed")
-            func(aztup.tabs[data.name])
-            --xpcall(func, warn, aztup.tabs[data.name]);   
+			print(name, "passed")
+            func(aztup.tabs[name])
+            --xpcall(func, warn, aztup.tabs[name]);   
         end
 
         local ThemeManager = require("@src/utility/librarys/managers/ThemeManager");
