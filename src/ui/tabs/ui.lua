@@ -1,7 +1,5 @@
 local tabs = {};
 
-local spotify_widget = require("@src/features/misc/spotify_widget");
-
 
 function tabs:create_fast_flags(tab)
 	local groupbox = tab:newGroupBox("Script Toggles", false);
