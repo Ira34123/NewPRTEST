@@ -4,10 +4,10 @@ local tab, _ = require("@src/utility/ui/wrapper");
 return {
     initialize = function()
         local creation_order = {
-            "Main",
-            "Visuals",
-            "Combat",
-            "Automation"
+            "main",
+            "visuals",
+            "combat",
+            "automation"
         };
  
         for _, tab_name in pairs(creation_order) do
@@ -17,12 +17,12 @@ return {
         for _, module in list_modules("ui/tabs/*") do
             local func, data = require(module);
             
-            if not aztup.tabs[string.lower(data.name)] then 
+            if not aztup.tabs[data.name] then 
                 print(data.name)
 				continue            
 			end;
 			print(data.name, "passed")
-            func(aztup.tabs[stringer.lower(data.name)])
+            func(aztup.tabs[data.name])
             --xpcall(func, warn, aztup.tabs[data.name]);   
         end
 
