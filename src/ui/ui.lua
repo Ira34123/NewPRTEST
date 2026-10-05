@@ -8,7 +8,6 @@ return {
             "visuals",
             "combat",
 			"auto",
-            "automation"
         };
  
         for _, tab_name in pairs(creation_order) do
