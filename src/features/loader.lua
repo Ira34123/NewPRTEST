@@ -75,11 +75,10 @@ function require(name)
 
         local source = game:HttpGet(BASE .. name)
 
-        local fn = loadstring(source)
+        local fn, err = loadstring(source)
 
         if not fn then
-            error("Failed to load " .. BASE .. name)
-            task.wait(100000)
+            error("Failed to load " .. BASE .. name .. tostring(err))
         end
 
         local result = fn()
