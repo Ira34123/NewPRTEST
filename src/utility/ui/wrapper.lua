@@ -428,7 +428,7 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
-				print(callback, text)
+				print(id, text, default, tip, callback, value)
 				if aztup.flags[ID] == Value then
 					return				
 end
@@ -449,6 +449,10 @@ end
 				if not feature then
 					return
 				end
+
+				for i, v in aztup.features do print(i,v) end
+				print("------------------------")
+				for i,v in feature do print(i,v) end
 
 				if feature.conn then 
 					if not feature.current_connection and Value then
