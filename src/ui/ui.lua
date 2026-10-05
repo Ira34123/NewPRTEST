@@ -7,7 +7,7 @@ return {
             "main",
             "visuals",
             "combat",
-			"auto,
+			"auto",
             "automation"
         };
  
