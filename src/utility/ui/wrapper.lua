@@ -428,6 +428,7 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
+				print(callback, text)
 				if aztup.flags[ID] == Value then
 					return				
 end
@@ -453,7 +454,7 @@ end
 					if not feature.current_connection and Value then
 						
 						feature.current_connection = feature.conn:Connect(function(...)
-							
+							print("updated")
 							xpcall(feature.update, function(data) 
 								Logger.warn(string.format("%s | %s", ID, data));
 							end, ...);
@@ -461,7 +462,7 @@ end
 						end);
 						aztup.maid:give_task(feature.current_connection);
 					elseif feature.current_connection and not Value then
-						
+						print("disconnected")
 						feature.current_connection:Disconnect()
 						feature.current_connection = nil
 					end
@@ -469,8 +470,10 @@ end
 
 				task.spawn(xpcall, function() 
 					if Value then
+						print(text, "enabled")
 						feature:enable();
 					else
+						print(text, "disabled")
 						feature:disable();
 					end;
 				end, Logger.warn);
