@@ -185,13 +185,13 @@ if aztup.automation:should_auto_start() then
     task.wait(1);
 end;
 
-local success, result = pcall(function()
-    return require(LPH_ENCSTR("@src/features/hooking"))
-end);
+--local success, result = pcall(function()
+  --  return require(LPH_ENCSTR("@src/features/hooking"))
+--end);
 
-if not success or not result then 
-    return game:GetService("Players").LocalPlayer:Kick("[pr] failed to hook, kicking to prevent bans\n" .. result)
-end; 
+--if not success or not result then 
+  --  return game:GetService("Players").LocalPlayer:Kick("[pr] failed to hook, kicking to prevent bans\n" .. result)
+--end; 
 
 do 
     LPH_NO_VIRTUALIZE(function()
