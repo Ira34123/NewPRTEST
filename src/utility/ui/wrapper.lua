@@ -428,7 +428,6 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
-				print(id, text, default, tip, callback, value)
 				if aztup.flags[ID] == Value then
 					return				
 end
@@ -450,10 +449,6 @@ end
 					return
 				end
 
-				for i, v in aztup.features do print(i,v) end
-				print("------------------------")
-				for i,v in feature do print(i,v) end
-
 				if feature.conn then 
 					if not feature.current_connection and Value then
 						
@@ -474,10 +469,8 @@ end
 
 				task.spawn(xpcall, function() 
 					if Value then
-						print(text, "enabled")
 						feature:enable();
 					else
-						print(text, "disabled")
 						feature:disable();
 					end;
 				end, Logger.warn);
