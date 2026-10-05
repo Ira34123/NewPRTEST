@@ -19,9 +19,9 @@ return {
             
             if not aztup.tabs[data.name] then 
                 continue            
-end;
-            
-            xpcall(func, warn, aztup.tabs[data.name]);   
+			end;
+            func(aztup.tabs[data.name])
+            --xpcall(func, warn, aztup.tabs[data.name]);   
         end
 
         local ThemeManager = require("@src/utility/librarys/managers/ThemeManager");
