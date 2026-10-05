@@ -651,14 +651,14 @@ end;
 
     other:newToggle("info_logger", "Timing Logger", false, "Log anims to console.", nil);
     other:newSlider("info_logger_range", "Timing Logger Range", 1, 1, 500, 0, true, "s");
-    local timing_builder = require("@src/features/auto-parry/builder");
-    local timings = tab:newGroupBox("Timing Builder", true);
-    timings:newToggleWithKeybind("show_timing_builder", "Show Timing Builder", false, "Make your own parry timings. Pick an animation it watched (or click one in the Timing Logger), place actions on the timeline, then Save.", function(val)
+    --local timing_builder = require("@src/features/auto-parry/builder");
+    --local timings = tab:newGroupBox("Timing Builder", true);
+    --timings:newToggleWithKeybind("show_timing_builder", "Show Timing Builder", false, "Make your own parry timings. Pick an animation it watched (or click one in the Timing Logger), place actions on the timeline, then Save.", function(val)
         timing_builder:set_visible(val);
     end);
-    timing_builder.on_close = function()
-        aztup_toggles.show_timing_builder:SetValue(false);
-    end;
+    --timing_builder.on_close = function()
+      --  aztup_toggles.show_timing_builder:SetValue(false);
+    --end;
 
     timings:newButton("Reload Timings", function()
         xpcall(getgenv().load_timings, warn); 
