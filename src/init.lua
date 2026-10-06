@@ -171,9 +171,9 @@ env.Logger = require(LPH_ENCSTR("@src/utility/logger"));
 aztup.automation = require(LPH_ENCSTR("@src/automation/loader"));
 env.fflags = require("@src/utility/fflags");
 
-if fflags:get("auto_load") and script_key then
-    require("@src/utility/setup_auto_load");
-end
+--if fflags:get("auto_load") and script_key then
+ --   require("@src/utility/setup_auto_load");
+--end
 
 if aztup.automation:should_auto_start() then
     local requests = services.ReplicatedStorage:WaitForChild("Requests");
@@ -185,13 +185,13 @@ if aztup.automation:should_auto_start() then
     task.wait(1);
 end;
 
---local success, result = pcall(function()
-  --  return require(LPH_ENCSTR("@src/features/hooking"))
---end);
+local success, result = pcall(function()
+  return require(LPH_ENCSTR("@src/features/hooking"))
+end);
 
---if not success or not result then 
-  --  return game:GetService("Players").LocalPlayer:Kick("[pr] failed to hook, kicking to prevent bans\n" .. result)
---end; 
+if not success or not result then 
+  return game:GetService("Players").LocalPlayer:Kick("[pr] failed to hook, kicking to prevent bans\n" .. result)
+end; 
 
 do 
     LPH_NO_VIRTUALIZE(function()
@@ -269,7 +269,7 @@ if hasnt_accepted_tos then
     task.wait(1.5);
 end; 
 
-if game.PlaceId == 4111023553 then 
+--if game.PlaceId == 4111023553 then 
     
     
     
@@ -291,12 +291,12 @@ if game.PlaceId == 4111023553 then
     
     
     
-    task.spawn(xpcall, function() 
-        require("@src/main_menu/loader");
-    end, warn)
+ --   task.spawn(xpcall, function() 
+--require("@src/main_menu/loader");
+--    end, warn)
 
-    return true
-end;
+--return true
+--end;
 
 env.signal = require("@src/utility/signal");
 loaded_signal = env.signal.new();
