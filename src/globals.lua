@@ -48,6 +48,9 @@ env["PROT_OBF" .. "_" .. "STR_SAFE_MACRO"] = function(...)
     return ...
 end 
 
+env["STR_TBL" .. "_" .. "SF_INVOKE"] = function(...) 
+    return ... 
+end
 
 env.is_eastern = game.PlaceId == 6473861193;
 env.is_depths = game.PlaceId == 5735553160;
