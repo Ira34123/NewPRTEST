@@ -171,17 +171,6 @@ end;
 
 local old_hmm = hookmetamethod;
 local parallel_hooks_allowed = parallel_hooks_allowed;
-local hookmetamethod = not parallel_hooks_allowed and function(t, method, hook)
-    local old;
-
-    local mt = getrawmetatable(t)
-    setreadonly(mt, false);
-    old = mt[method];
-    mt[method] = hook;
-    setreadonly(mt, true);
-
-    return old
-end or hookmetamethod;
 
 
 getgenv().KeyHandler = KeyHandlerClass.new();
