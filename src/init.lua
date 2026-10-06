@@ -350,8 +350,16 @@ local features = {
     list_modules("features/automation/*"),
 }
 
+function get_last_filename(path)
+    return path:match("([^/]+)%.lua$")
+end
+
 for _, v in ipairs(features) do
     for _, path in ipairs(v) do
+		if aztup.features[get_last_filename(path)] then
+			continue
+		end
+		
         task.spawn(function()
             local success, result = xpcall(function()
                 return require(path)
