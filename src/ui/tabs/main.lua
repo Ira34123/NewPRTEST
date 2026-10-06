@@ -351,15 +351,6 @@ return function(tab)
         server_utility:obliteration(slot)
     end, true, "Wipes your character.")
 
-    if not LPH_OBFUSCATED then
-        wipe_button:AddButton({
-            Text = "Refresh",
-            Func = require("@src/features/buttons/refresh"),
-            DoubleClick = true,
-            Risky = true,
-            Tooltip = "Respawns you at your same spot, Not usable in combat, Breaks menus.",
-        });
-    end
     qol_groupbox:newKeybind("offset_floor", "TP To Floor", "", require("@src/features/buttons/tp_to_floor"), "Toggle", false, true);
     qol_groupbox:newKeybind("tp_to_objectives", "TP To Objectives", "", require("@src/features/buttons/tp_to_objectives"), "Toggle", false, true); 
     
