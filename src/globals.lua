@@ -49,13 +49,13 @@ env["PROT_OBF" .. "_" .. "STR_SAFE_MACRO"] = function(...)
 end 
 
 
-local is_eastern = game.PlaceId == 6473861193;
-local is_depths = game.PlaceId == 5735553160;
-local is_etrean = game.PlaceId == 6032399813;
-local is_chime = game.PlaceId == 6832944305;
-local is_dungeon =  game.PlaceId == 8668476218;
+env.is_eastern = game.PlaceId == 6473861193;
+env.is_depths = game.PlaceId == 5735553160;
+env.is_etrean = game.PlaceId == 6032399813;
+env.is_chime = game.PlaceId == 6832944305;
+env.is_dungeon =  game.PlaceId == 8668476218;
 
-local parallel_hooks_allowed = identifyexecutor() == "Volt" or identifyexecutor() == "Synapse Z";
+env.parallel_hooks_allowed = identifyexecutor() == "Volt" or identifyexecutor() == "Synapse Z";
 
 local safe_fireserver_func, safe_json_decode;
 
@@ -63,13 +63,13 @@ if not LPH_OBFUSCATED then
     getgenv().script_require = builder_require;
 end
 
-local lexend;
-local sf_isnetworkowner;
-local ap_breaker_tbl;
-local chance_store;
-local loaded_signal;
+env.lexend;
+env.sf_isnetworkowner;
+env.ap_breaker_tbl;
+env.chance_store;
+env.loaded_signal;
 
-local is_regular = LRM_ScriptName == "Project Rain"
+env.is_regular = LRM_ScriptName == "Project Rain"
 local old_fpp = fireproximityprompt;
 local fireproximityprompt = function(...)
     local prompt = ...;
@@ -86,8 +86,7 @@ local fireproximityprompt = function(...)
     return res
 end
 
-local user_service;
-local place_name = ({
+env.place_name = ({
     [5735553160] = "The Depths",
     [6032399813] = "Etrean Luminant",
     [6473861193] = "Eastern Luminant",
