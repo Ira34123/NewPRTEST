@@ -66,11 +66,11 @@ if not LPH_OBFUSCATED then
     getgenv().script_require = builder_require;
 end
 
-env.lexend = nil;
-env.sf_isnetworkowner = nil;
-env.ap_breaker_tbl = nil;
-env.chance_store = nil;
-env.loaded_signal = nil;
+local lexend;
+local sf_isnetworkowner;
+local ap_breaker_tbl;
+local chance_store;
+local loaded_signal;
 
 env.is_regular = LRM_ScriptName == "Project Rain"
 local old_fpp = fireproximityprompt;
