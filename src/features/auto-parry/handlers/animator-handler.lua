@@ -17,7 +17,6 @@ function getInfo(id)
 end
 
 local encrypted_timing_data = require("@src/features/auto-parry/data/encrypted_timing_data");
-local custom_timings = require("@src/features/auto-parry/data/custom_timings");
 local ap_breaker_tracks = setmetatable({}, { __mode = "k" });
 
 break_anims = function(track, time, data, action_type, self)
@@ -207,9 +206,7 @@ return LPH_NO_VIRTUALIZE(function()
             local str = typeof(index) == "string" and index or timing.name or timing.actions and timing.actions[1] and timing.actions[1].name;
             if str then table.insert(list, str); end;
         end;
-        for name in custom_timings:sync() do
-            table.insert(list, name);
-        end;
+
         return list    
 end;
     
@@ -935,11 +932,6 @@ end;
     
     
     local function lookup_timing_data(id)
-        
-        local custom, custom_name = custom_timings:lookup(id);
-        if custom then
-            return custom, custom_name        
-end;
 
         local data, pot_name;
         local index = fast_timing_lookup_table[id];
