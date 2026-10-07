@@ -151,7 +151,7 @@ if aztup.automation:should_auto_start() then
     task.wait(1);
 end;
 
-if not game:GetService("Players").LocalPlayer.Character; then
+if not game:GetService("Players").LocalPlayer.Character then
 	repeat
 		task.wait()
 	until game:GetService("Players").LocalPlayer.Character;
