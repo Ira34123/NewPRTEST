@@ -141,13 +141,22 @@ env.fflags = require("@src/utility/fflags");
 --end
 
 
-local requests = services.ReplicatedStorage:WaitForChild("Requests");
-local start = requests:WaitForChild("StartMenu"):WaitForChild("Start")
-repeat
-	start:FireServer()
-	task.wait(0.5)
-until game:GetService("Players").LocalPlayer.Character;
-task.wait(1);
+if aztup.automation:should_auto_start() then
+    local requests = services.ReplicatedStorage:WaitForChild("Requests");
+    local start = requests:WaitForChild("StartMenu"):WaitForChild("Start")
+    repeat
+        start:FireServer(true)
+        task.wait(0.5)
+    until game:GetService("Players").LocalPlayer.Character;
+    task.wait(1);
+end;
+
+if not game:GetService("Players").LocalPlayer.Character then
+	repeat
+		task.wait()
+	until game:GetService("Players").LocalPlayer.Character;
+	task.wait(1)
+end
 
 local success, result = pcall(function()
   return require(LPH_ENCSTR("@src/features/hooking"))
