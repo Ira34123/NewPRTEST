@@ -1,4 +1,8 @@
-
+if getgenv().ProjectRainscriptran then
+    warn("Script has already been executed its dangerous to run again sorry")
+    return
+end
+getgenv().ProjectRainscriptran = true
 local HttpService = game:GetService("HttpService")
 
 local REPO =
