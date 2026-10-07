@@ -3,7 +3,7 @@ local bv = Instance.new("BodyVelocity");
 bv.Name = "SlideVel";
 bv.MaxForce = Vector3.new(1000000, 1000000, 1000000);
 bv:AddTag("AllowedBM");
-local collision_utils = base_require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("CollisionUtils"));
+--local collision_utils = base_require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("CollisionUtils"));
     local spoofing = false;
     local old_y;
 
@@ -167,14 +167,14 @@ end;
 
     speed = math.min(EffectReplicator:FindEffect("Knocked") and 350 or 250, speed)
 
-    if aztup.flags.pull_to_ground and not aztup.flags.noclip then
-        if not services.UserInputService:IsKeyDown(Enum.KeyCode.Space) and not services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) and not EffectReplicator:HasEffect("Swimming") then
-            local close_to_ground = collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -7.5, 0), collision_utils.solidParams);
-            local getting_close_to_ground = collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -25, 0), collision_utils.solidParams);
+   -- if aztup.flags.pull_to_ground and not aztup.flags.noclip then
+ --       if not services.UserInputService:IsKeyDown(Enum.KeyCode.Space) and not services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) and not EffectReplicator:HasEffect("Swimming") then
+     --       local close_to_ground = collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -7.5, 0), collision_utils.solidParams);
+     --       local getting_close_to_ground = collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -25, 0), collision_utils.solidParams);
 
-            direction = direction + Vector3.new(0, close_to_ground and -1 or (getting_close_to_ground and -0.75 or -0.3), 0);
-        end;
-    end
+     --       direction = direction + Vector3.new(0, close_to_ground and -1 or (getting_close_to_ground and -0.75 or -0.3), 0);
+    --    end;
+   -- end
 
     local ground_controller_should_be_used = false;
     current_bv.MaxForce = Vector3.new(1000000, 1000000, 1000000);
