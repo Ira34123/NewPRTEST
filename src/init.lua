@@ -144,8 +144,7 @@ if aztup.automation:should_auto_start() then
     local requests = services.ReplicatedStorage:WaitForChild("Requests");
     local start = requests:WaitForChild("StartMenu"):WaitForChild("Start")
     repeat
-        start:FireServer()
-		mouse1click()
+        start:FireServer(true)
         task.wait(0.5)
     until game:GetService("Players").LocalPlayer.Character;
     task.wait(1);
