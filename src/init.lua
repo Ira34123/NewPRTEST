@@ -145,6 +145,7 @@ if aztup.automation:should_auto_start() then
     local start = requests:WaitForChild("StartMenu"):WaitForChild("Start")
     repeat
         start:FireServer()
+		mouse1click()
         task.wait(0.5)
     until game:GetService("Players").LocalPlayer.Character;
     task.wait(1);
