@@ -10,41 +10,6 @@ if getgenv().metamorphosis then
 end;
 
 
-local function handle_dev_tools()
-    local success, dev_tools_settings = pcall(game.HttpGet, game, "http://localhost:441/dev-tools");
-    if not success or not dev_tools_settings then
-        return    
-end;
-    
-    local success_json, json_decoded = pcall(game:GetService("HttpService").JSONDecode, game:GetService("HttpService"), dev_tools_settings);
-    if not success_json or not json_decoded then
-        return    
-end;
-
-    getgenv().dev_tools_data = json_decoded;
-     
-    if json_decoded["queue-on-teleport"] then
-        queue_on_teleport([[
-            if getgenv().queued then return; end
-            getgenv().queued = true;
-            
-            xpcall(function()
-                local success, dev_script = pcall(game.HttpGet, game, "http://localhost:3067/dev-loader");
-                if not success then
-                    return print("failed to get loader, run dev-tools.js if not loaded:", dev_script);
-                end;
-            
-                local func, err = loadstring(dev_script);
-                if not func then
-                    return print("failed to load loader:", err); 
-                end;
-                xpcall(func, warn);
-            end, warn);
-        ]])
-    end;
-end;
-task.spawn(xpcall, handle_dev_tools, warn);
-
 env = getgenv();
 if not LPH_OBFUSCATED then
     require(LPH_ENCSTR("@src/utility/librarys/luraph_sdk"));
@@ -366,8 +331,7 @@ for _, v in ipairs(features) do
             end, debug.traceback)
 
             if not success then
-                warn("[FEATURE FAILED]", path)
-                warn(result)
+                warn("[FEATURE FAILED]", path, "ERROR:" .. result)
             else
                 print("[FEATURE LOADED]", path, result)
             end
