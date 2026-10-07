@@ -1,9 +1,21 @@
 local ht = services.HttpService; local jd = ht.JSONDecode; local tbl;
 local extra_data = LPH_NO_VIRTUALIZE(function() 
     function decode_asset(asset)
-         local decoded = services.EncodingService:Base64Decode(buffer.fromstring(asset));
-         local decompress = services.EncodingService:DecompressBuffer(decoded, Enum.CompressionAlgorithm.Zstd);
-         return buffer.tostring(decompress)    
+      local success, result = pcall(function()
+		        local decoded = services.EncodingService:Base64Decode(buffer.fromstring(asset))
+		        local decompress = services.EncodingService:DecompressBuffer(
+		            decoded,
+		            Enum.CompressionAlgorithm.Zstd
+		        )
+		
+		        return buffer.tostring(decompress)
+		    end)
+		
+		    if success then
+		        return result
+		    end
+		
+		    return asset   
 end;
     tbl = jd(ht, decode_asset(inline_asset_b96("@assets/base.json")));
     return jd(ht, decode_asset(inline_asset_b96("@assets/extra_data.json")))
