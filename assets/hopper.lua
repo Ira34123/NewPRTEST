@@ -67,7 +67,7 @@ local regions = {
 
 --[1] - latitude, [2] - longitude
 
-local ip_data = game:GetService("HttpService"):JSONDecode(readfile("Project Rain/Server Hopper Data.json"));
+--local ip_data = game:GetService("HttpService"):JSONDecode(readfile("Project Rain/Server Hopper Data.json"));
 
 function deg_2_rad(deg)
     return deg * (math.pi / 180)
@@ -91,12 +91,13 @@ function get_distance_in_kilometers(lat1, lon1, lat2, lon2)
 end
 
 local function get_distance(server)
-    return get_distance_in_kilometers(
-        ip_data.lat,
-        ip_data.lon,
-        server.lat,
-        server.lon
-    )
+ --   return get_distance_in_kilometers(
+     --   ip_data.lat,
+     --   ip_data.lon,
+   --     server.lat,
+  --      server.lon
+ --   )
+    return 0
 end
 
 local function get_server_score(server)
