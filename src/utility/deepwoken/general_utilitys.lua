@@ -1,8 +1,8 @@
 
 
 local general = {}; 
-local collision_utils = base_require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("CollisionUtils"));
-general.collision_utils = collision_utils;
+--local collision_utils = base_require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("CollisionUtils"));
+--general.collision_utils = collision_utils;
 
 function general:in_air()
     local sensor = local_player.root_part:FindFirstChild("GroundSensor");
@@ -10,9 +10,9 @@ function general:in_air()
         return false    
 elseif EffectReplicator:HasEffect("AirBorne") then
         return true    
-elseif sensor and not sensor.SensedPart then
-        if not collision_utils.solidParams then return false end
-        return not collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -(sensor.SearchDistance + 3), 0), collision_utils.solidParams)    
+--elseif sensor and not sensor.SensedPart then
+  --      if not collision_utils.solidParams then return false end
+  --      return not collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -(sensor.SearchDistance + 3), 0), collision_utils.solidParams)    
 end
 
     return false
