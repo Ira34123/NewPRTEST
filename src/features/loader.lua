@@ -54,8 +54,8 @@ local BASE =
     .. "/"
 
 local Cache = {}
-local oldRequire = require
-local base_require = require
+getgenv().oldRequire = require
+getgenv().base_require = require
 function require(name)
     if typeof(name) == "string" then
         if name:sub(1, 5) == "@src/" then
