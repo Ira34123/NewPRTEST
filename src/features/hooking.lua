@@ -409,7 +409,7 @@ if isfunctionhooked(getrawmetatable(game).__newindex) then
     restorefunction(getrawmetatable(game).__newindex);
 end
 
-
+local lastPart
 local old_newindex;
 old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ...)
     if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "ActiveController" or key == "WalkSpeed" or key == "SensedPart") then
@@ -426,7 +426,7 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
 
 		elseif aztup.flags.no_aerials and key == "SensedPart" and self.Parent == local_player.root_part then
 		    if value then
-		        getgenv().lastPart = value
+		        lastPart = value
 		        return old_newindex(self, key, value, ...)
 		    else
 		        return old_newindex(self, key, lastPart, ...)
