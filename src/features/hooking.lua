@@ -427,6 +427,7 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
 						return old_newindex(self, key, value, ...)
 					else
 						return
+					end
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
             if self.Name == "Character" then
                 return old_newindex(self, key, "", ...)            
