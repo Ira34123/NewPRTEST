@@ -4,9 +4,11 @@ self = Feature:new("m1_hold", services.RunService.RenderStepped, LPH_NO_VIRTUALI
     if not EffectReplicator:FindEffect("Equipped") then return end
     if aztup.flags.block_input and BlockInputManager:should_block_input() and aztup_options.blocked_safe_input_user_moves.Value.M1s then return end
 
-	if mhouse1click then
-		mhouse1click()
-	end
+	task.spawn(function()
+		if mhouse1click then
+			mhouse1click()
+		end
+	end)
 
     local remote = KeyHandler:get_cache("LeftClick") or KeyHandler:get_key("LeftClick");
     if not remote or not remote:IsDescendantOf(local_player.character) or not remote.Parent then
