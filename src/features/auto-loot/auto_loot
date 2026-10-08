@@ -647,11 +647,17 @@ end
 
 local last_time = 0;
 return Feature:new("auto_loot", services.RunService.RenderStepped, function() 
+    print("callback running")
     if tick() - last_time < 1 / 10 then return end
     last_time = tick()
-    xpcall(function()
-    auto_loot:main()
-		end, function(err)
-    warn("[AUTO_LOOT ERROR]", err, debug.traceback(()
-end)
+	print("xpcall")
+    xpcall(
+		function()
+   			auto_loot:main()
+		end, 
+		function(err)
+    		warn("[AUTO_LOOT ERROR]", err, debug.traceback())
+		end
+	)
+	print("xpcalled")
 end)
