@@ -44,7 +44,7 @@ end;
 end
         
         if not general:playing_ap_anims(target) or target.Name:match("golem") then
-            KeyHandler:get_key("LeftClick"):FireServer(not aztup.flags.no_aerials and general:in_air(), local_player.instance:GetMouse().Hit, {
+            KeyHandler:get_key("LeftClick"):FireServer(true, local_player.instance:GetMouse().Hit, {
                 S = false,
                 NOAERIALS = false,
                 Space = false,
