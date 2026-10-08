@@ -425,7 +425,7 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
                 return            
 			end;
 
-		elseif aztup.flags.no_aerials and key == "SensedPart
+		elseif aztup.flags.no_aerials and key == "SensedPart"
 		then
 			if self.Parent ~= local_player.root_part then
 				warn(self.Parent, "NOT PARENTED TO ROOT")
