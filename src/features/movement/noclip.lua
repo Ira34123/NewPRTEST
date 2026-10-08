@@ -17,9 +17,9 @@ end;
         return    
 end;
 
-    if not EffectReplicator:FindEffect("TPSafe") then
-        EffectReplicator:CreateEffect("TPSafe");
-    end;
+  --  if not EffectReplicator:FindEffect("TPSafe") then
+    --    EffectReplicator:CreateEffect("TPSafe");
+--    end;
 
     for _, part in local_player.character:QueryDescendants('BasePart[CanCollide = true]') do
         part.CanCollide = false;
