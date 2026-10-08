@@ -176,7 +176,7 @@ end;
     --    end;
    -- end
 
-    local ground_controller_should_be_used = false;
+    local ground_controller_should_be_used = true;
     current_bv.MaxForce = Vector3.new(1000000, 1000000, 1000000);
     if aztup.flags.ignore_ground and not general:in_air() and not EffectReplicator:HasEffect("Swimming") and not aztup.flags.noclip then
         current_bv.MaxForce = Vector3.new(1000000, 0, 1000000);
@@ -208,13 +208,9 @@ end;
 
     controller_manager.ActiveController = ground_controller_should_be_used and ground_controller or air_controller
 
-    if not ground_controller_should_be_used and aztup.flags.noclip then
-        ground_sensor.SensorMode = Enum.SensorMode.ClassicLadder;
-        ground_sensor.UpdateType = Enum.SensorUpdateType.OnRead;
-    else 
-        ground_sensor.SensorMode = Enum.SensorMode.Floor;
-        ground_sensor.UpdateType = Enum.SensorUpdateType.Manual;
-    end
+
+	ground_sensor.SensorMode = Enum.SensorMode.Floor;
+	ground_sensor.UpdateType = Enum.SensorUpdateType.Manual;
 
     return
 end));
