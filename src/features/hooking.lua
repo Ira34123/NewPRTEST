@@ -263,16 +263,16 @@ old_namecall = hookmetamethod(game, "__namecall", function(self, ...)
             "ClientCF"
         }, attr_name) then
             return        
-elseif flags.streamer_mode then
-            if attr_name == "FirstName" then
-                return ""            
-elseif attr_name == "CharacterName" then
-                return ""            
-elseif attr_name == "GuildColor" then
-                return Color3.new(0.752941, 0.854902, 0.87451)            
-elseif attr_name == "GuildEmblemA" or attr_name == "GuildEmblemB" then
-                return 0            
-end
+	elseif flags.streamer_mode then
+	            if attr_name == "FirstName" then
+	                return ""            
+	elseif attr_name == "CharacterName" then
+	                return ""            
+	elseif attr_name == "GuildColor" then
+	                return Color3.new(0.752941, 0.854902, 0.87451)            
+	elseif attr_name == "GuildEmblemA" or attr_name == "GuildEmblemB" then
+	                return 0            
+	end
         end;
     elseif method == "Raycast" then
         local _, _, params = ...;
@@ -288,7 +288,11 @@ end
         if looking_for == "CharacterHandler" and caller.Name == "KeyHandler" then
             warn("CharacterHandler reparent attempt from KeyHandler");
             return coroutine.yield()        
-end
+		end
+		elseif method == "GetState" then
+			if aztup.flags.no_aerials and self:IsA("Humanoid") then
+				return Enum.HumanoidStateType.Running
+			end
     elseif method == "Create" and self == services.TweenService then
         local instance, info, data = ...;
         local new_args = {...};
@@ -319,7 +323,7 @@ elseif method == "FireServer" then
             local critical_click = KeyHandler:get_cache("CriticalClick");
             if critical_click and self == critical_click and BlockInputManager:should_block_input() and aztup_options.blocked_safe_input_user_moves.Value.Criticals then
                 return            
-end;
+			end;
         end
         
         if flags.give_animation_gamepass and self then
