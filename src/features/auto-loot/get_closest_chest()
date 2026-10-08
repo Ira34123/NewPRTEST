@@ -125,18 +125,19 @@ local auto_loot = {
     get_closest_chest = function()
         local pos = local_player.root_part.Position
         local closest_distance = math.huge
+		local closest_chest
 
         for _, chest in pairs(workspace.Thrown:GetChildren()) do
             if chest:FindFirstChild('Lid') and chest:FindFirstChild('InteractPrompt') then
                 local dist = (chest.Lid.Position - pos).Magnitude
                 if (dist <= closest_distance and dist <= 10) then
                     closest_distance = dist
-                    return chest
+                    closest_chest = chest
                 end
             end
         end
 
-        return nil
+        return closest_chest
     end,
 
     fire_loot_all = function(remote)
@@ -274,6 +275,10 @@ end
 function auto_loot:loot_all(remote, loot)
     local selected_rarities = aztup_options.loot_all_rarities.Value
     local item_rarity = self.identify_color(self, loot.BackgroundColor3:ToHex(), 1)
+
+	if not item_rarity then
+		return false
+	end
 
     local function rarities_selected()
         for rarity, boolean in pairs(selected_rarities) do
@@ -548,7 +553,8 @@ function auto_loot:always_loot(remote, loot)
 
     local function loot_relics(loot)
         local option_selected = aztup_options.always_loot_dropdown.Value['Relics']
-        local is_relic_rarity = self.identify_color(self, color:ToHex(), 1):lower() == 'relic'
+        local rarity = self.identify_color(self, color:ToHex(), 1)
+		local is_relic_rarity = rarity and rarity:lower() == "relic"
         return option_selected and is_relic_rarity
     end
 
@@ -564,7 +570,8 @@ function auto_loot:always_loot(remote, loot)
         end
 
         local option_selected = aztup_options.always_loot_dropdown.Value['Enchant Stones']
-        local is_legendary_rarity = self.identify_color(self, color:ToHex(), 1):lower() == 'legendary'
+		local rarity = self.identify_color(self, color:ToHex(), 1)
+		local is_legendary_rarity = rarity and rarity:lower() == "legendary"
 
         return option_selected and is_legendary_rarity and found_enchant(loot)
     end
@@ -572,7 +579,9 @@ function auto_loot:always_loot(remote, loot)
     local function loot_legendary_weapons(loot)
         local option_selected = aztup_options.always_loot_dropdown.Value['Legendary Weapons']
 		local is_weapon = loot:FindFirstChild('Icon') and loot:FindFirstChild("Icon").ImageRectOffset.X == auto_loot.icon_offsets.weapons
-		local is_legendary_rarity = self.identify_color(self, color:ToHex(), 1):lower() == "legendary"
+		local rarity = self.identify_color(self, color:ToHex(), 1)
+		local is_legendary_rarity = rarity and rarity:lower() == "legendary"
+
 		return option_selected and is_weapon and is_legendary_rarity and not self.is_overweight()
     end
 
@@ -639,7 +648,9 @@ local last_time = 0;
 return Feature:new("auto_loot", services.RunService.RenderStepped, function() 
     if tick() - last_time < 1 / 10 then return end
     last_time = tick()
-    pcall(function(...)  
-        auto_loot:main()
-    end)
+    xpcall(function()
+    auto_loot:main()
+		end, function(err)
+    warn("[AUTO_LOOT ERROR]", err, debug.traceback(()
+end)
 end)
