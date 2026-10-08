@@ -1,32 +1,30 @@
 local self;
 self = Feature:new("m1_hold", services.RunService.RenderStepped, LPH_NO_VIRTUALIZE(function()
-    if not self.held then return end
-    if not EffectReplicator:FindEffect("Equipped") then return end
-    if aztup.flags.block_input and BlockInputManager:should_block_input() and aztup_options.blocked_safe_input_user_moves.Value.M1s then return end
+	if not self.held then return end
+	if not EffectReplicator:FindEffect("Equipped") then return end
+	print("CLICKED")
+	mouse1click()
+   -- if not self.held then return end
+ --   if not EffectReplicator:FindEffect("Equipped") then return end
+  --  if aztup.flags.block_input and BlockInputManager:should_block_input() and aztup_options.blocked_safe_input_user_moves.Value.M1s then return end
 
-	task.spawn(function()
-		if mhouse1click then
-			mhouse1click()
-		end
-	end)
-
-    local remote = KeyHandler:get_cache("LeftClick") or KeyHandler:get_key("LeftClick");
-    if not remote or not remote:IsDescendantOf(local_player.character) or not remote.Parent then
-        remote = KeyHandler:get_key("LeftClick");
-    end
+   -- local remote = KeyHandler:get_cache("LeftClick") or KeyHandler:get_key("LeftClick");
+ --   if not remote or not remote:IsDescendantOf(local_player.character) or not remote.Parent then
+ --       remote = KeyHandler:get_key("LeftClick");
+ --   end
 
 
-    if not remote then return end
+ --   if not remote then return end
 		
-    remote:FireServer(not aztup.flags.no_aerials and general:in_air(), local_player.instance:GetMouse().Hit, {
-		S = false,
-		NOAERIALS = aztup.flags.no_aerials, 
-		Space = false,
-		Right = services.UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2),
-		W = false,
-		Left = true,
-        ctrl = services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl)
-    }); 
+--    remote:FireServer(not aztup.flags.no_aerials and general:in_air(), local_player.instance:GetMouse().Hit, {
+--		S = false,
+--		NOAERIALS = aztup.flags.no_aerials, 
+--		Space = false,
+--		Right = services.UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2),
+--		W = false,
+--		Left = true,
+ --       ctrl = services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl)
+--    }); 
 end));
 
 function self:enable()
