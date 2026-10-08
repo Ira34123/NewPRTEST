@@ -410,6 +410,7 @@ if isfunctionhooked(getrawmetatable(game).__newindex) then
 end
 
 local lastPart
+local placeHolderPart
 local old_newindex;
 old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ...)
     if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "ActiveController" or key == "WalkSpeed" or key == "SensedPart") then
@@ -428,8 +429,13 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
 		    if value then
 		        lastPart = value
 		        return old_newindex(self, key, value, ...)
-		    else
+		    elseif lastPart then
 		        return old_newindex(self, key, lastPart, ...)
+			elseif placeHolderPart then
+				return old_newindex(self, key, placeHolderPart, ...)
+			else
+				placeHolderPart = Instance.new("Part")
+				return old_newindex(self, key, placeHolderPart, ...)
 		    end
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
             if self.Name == "Character" then
