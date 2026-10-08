@@ -425,21 +425,11 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
                 return            
 			end;
 
-		elseif aztup.flags.no_aerials and key == "SensedPart"
-		then
-			if self.Parent ~= local_player.root_part then
-				warn(self.Parent, "NOT PARENTED TO ROOT")
-				return old_newindex(self, key, value, ...)
-			end
-
-			print("PASSEDCHECK")
-			
+		elseif aztup.flags.no_aerials and key == "SensedPart" and self.Parent == local_player.root_part then
 		    if value then
 		        lastPart = value
-				print(lastPart, "setvalue")
 		        return old_newindex(self, key, value, ...)
 		    else
-				print(lastPart)
 		        return old_newindex(self, key, lastPart, ...)
 		    end
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
