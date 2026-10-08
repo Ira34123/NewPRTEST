@@ -2,13 +2,13 @@ local feature = Feature:new("no_aerials")
 
 local part
 function feature:enable()
+  print("Enabled")
   local root = local_player.root_part
   if root and root:FindFirstChild("GroundSensor") then
-    if not root.GroundSensor.SensedPart or not lastPart then
-        part = Instance.new("Part")
-        getgenv().lastPart = part
-        root.GroundSensor.SensedPart = part
-    end
+      task.wait(0.1)
+      part = Instance.new("Part")
+      print("SetPart")
+      root.GroundSensor.SensedPart = part
   end
 end
 
