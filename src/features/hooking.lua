@@ -370,7 +370,7 @@ end;
 		if aztup.flags.no_fall and self == aztup.features.fall_multiplier.fall_remote then
 			return
 		end
-        if aztup.flags.fall_multiplier and self == aztup.features.fall_multiplier.fall_remote then
+        if aztup.flags.fall_multiplier and self == KeyHandler:get_key(STR_TBL_SF_INVOKE("FallDamage")) then
             if aztup.flags.only_near_players then
                 local players_are_near = false;
                 for _, player in services.Players.GetPlayers(services.Players) do
