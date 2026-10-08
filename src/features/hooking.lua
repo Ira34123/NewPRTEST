@@ -289,10 +289,6 @@ old_namecall = hookmetamethod(game, "__namecall", function(self, ...)
             warn("CharacterHandler reparent attempt from KeyHandler");
             return coroutine.yield()        
 		end
-		elseif method == "GetState" then
-			if aztup.flags.no_aerials and self:IsA("Humanoid") then
-				return Enum.HumanoidStateType.Running
-			end
     elseif method == "Create" and self == services.TweenService then
         local instance, info, data = ...;
         local new_args = {...};
@@ -425,7 +421,12 @@ old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ..
 elseif flags.mob_ai_breaker and key == "Velocity" then
             if value.Magnitude < 0.2 then
                 return            
-end;
+			end;
+			elseif key == "SensedPart" and aztup.flags.no_aerials and self.Parent = local_player.root_part then
+					if value then
+						return old_newindex(self, key, value, ...)
+					else
+						return
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
             if self.Name == "Character" then
                 return old_newindex(self, key, "", ...)            
