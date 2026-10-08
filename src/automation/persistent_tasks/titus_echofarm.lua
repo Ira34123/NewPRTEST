@@ -226,12 +226,12 @@ function autotitus:getechoes()
         return false
     end
 
-local idol = backpack:FindFirstChild("Idol of Yun'Shul")
+    local idol = backpack:FindFirstChild("Idol of Yun'Shul")
     if idol and aztup.automation:has_any() then
         character.Humanoid:EquipTool(idol)
         task.wait(0.3)
         for i = 1, 3 do
-           idol:Activate()
+            idol:Activate()
             task.wait(0.1);
             if player.PlayerGui:FindFirstChild("ChoicePrompt") then break; end
         end
