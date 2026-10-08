@@ -17,16 +17,41 @@ end;
         return    
 end;
 
-    if not EffectReplicator:FindEffect("TPSafe") then
-        EffectReplicator:CreateEffect("TPSafe");
-    end;
-
-    for _, part in local_player.character:QueryDescendants('BasePart[CanCollide = true]') do
-        part.CanCollide = false;
-        
-        if not table.find(modified_parts, part) then
-            table.insert(modified_parts, part);
+        if not EffectReplicator:FindEffect("TPSafe") then
+            EffectReplicator:CreateEffect("TPSafe");
         end;
+    
+        local body_parts = {
+        local_player.character:FindFirstChild("Head"),
+        local_player.character:FindFirstChild("HumanoidRootPart"),
+        local_player.character:FindFirstChild("Left Leg"),
+        local_player.character:FindFirstChild("Right Leg")
+    }
+    
+    for _, body_part in ipairs(body_parts) do
+        if body_part then
+            local touching = body_part:GetTouchingParts()
+    
+            if #touching > 0 then
+                for _, part in ipairs(touching) do
+                    if part.CanCollide then
+                        part.CanCollide = false
+    
+                        if not table.find(modified_parts, part) then
+                            table.insert(modified_parts, part)
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    for _, part in local_player.character:QueryDescendants('BasePart[CanCollide = true]') do 
+        part.CanCollide = false; 
+             
+        if not table.find(modified_parts, part) then 
+            table.insert(modified_parts, part); 
+        end; 
     end;
 
     return
