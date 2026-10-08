@@ -437,8 +437,12 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
 				placeHolderPart = Instance.new("Part")
 				return old_newindex(self, key, placeHolderPart, ...)
 		    end
-		elseif aztup.flags.no_aerials and key == "UpdateType" and self.Parent == local_player.root_part then
-			return old_newindex(self, key, Enum.SensorUpdateType.Manual, ...)
+		elseif key == "UpdateType" and self.Parent == local_player.root_part then
+			    if self == sensor and key == "UpdateType" then
+				        warn("UpdateType ->", value, debug.traceback())
+				    end
+				
+				    return old(self, key, Enum.SensorUpdateType.Manual, ...)
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
             if self.Name == "Character" then
                 return old_newindex(self, key, "", ...)            
