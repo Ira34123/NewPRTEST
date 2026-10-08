@@ -1,5 +1,4 @@
 local modified_parts = {};
-local touched_parts = {}
 local feature = Feature:new("noclip", game:GetService("RunService").Stepped, LPH_NO_VIRTUALIZE(function()
     if is_chime and aztup.flags.chime_safety then
         return aztup_toggles.noclip:SetValue(false)    
@@ -16,15 +15,8 @@ end;
         end
     end;
 
-    for part, table in pairs(touched_parts) do
-        if part then
-            part.CanTouch = table[1]
-            part.CanQuery = table[2]
-        end
-    end
 
     table.clear(modified_parts);
-    table.clear(touched_parts)
         return    
 end;
 
@@ -54,20 +46,11 @@ end;
                 for _, part in ipairs(touching) do
                     if part.CanCollide then
                         part.CanCollide = false
-                        local cantouch = part.CanTouch 
-                        part.CanTouch = false
-                    
-                        local canquery = part.CanQuery 
-                        part.CanQuery = false
-                        
     
                         if not table.find(modified_parts, part) then
                             table.insert(modified_parts, part)
                         end
 
-                        if not touched_parts[part] then
-                            touched_parts[part] = {cantouch, canquery}
-                        end
                     end
                 end
             end
@@ -85,15 +68,7 @@ function feature:disable()
         end
     end;
 
-    for part, table in pairs(touched_parts) do
-        if part then
-            part.CanTouch = table[1]
-            part.CanQuery = table[2]
-        end
-    end
-
     table.clear(modified_parts);
-    table.clear(touched_parts)
 end;
 
 return feature
