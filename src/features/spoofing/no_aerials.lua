@@ -4,8 +4,11 @@ local part
 function feature:enable()
   local root = local_player.root_part
   if root and root:FindFirstChild("GroundSensor") then
-      part = Instance.new("Part")
-      root.GroundSensor.SensedPart = part
+    if not root.GroundSensor.SensedPart or not lastPart then
+        part = Instance.new("Part")
+        getgenv().lastPart = part
+        root.GroundSensor.SensedPart = part
+    end
   end
 end
 
