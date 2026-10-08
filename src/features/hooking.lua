@@ -425,10 +425,18 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
                 return            
 			end;
 
-		elseif key == "SensedPart"
-		    and aztup.flags.no_aerials
-		    and self.Parent == local_player.root_part
+		elseif aztup.flags.no_aerials
 		then
+			if key ~= "SensedPart" then
+				warn("NOSENSEDPART")
+			end
+
+			if self.Parent ~= local_player.root_part then
+				warn(self.Parent, "NOT PARENTED TO ROOT")
+			end
+
+			print("PASSEDCHECK")
+			
 		    if value then
 		        lastPart = value
 				print(lastPart, "setvalue")
