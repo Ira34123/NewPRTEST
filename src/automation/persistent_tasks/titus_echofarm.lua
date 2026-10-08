@@ -226,23 +226,23 @@ function autotitus:getechoes()
         return false
     end
 
-    --local idol = backpack:FindFirstChild("Idol of Yun'Shul")
-  --  if idol and aztup.automation:has_any() then
-   --     character.Humanoid:EquipTool(idol)
-  --      task.wait(0.3)
-  --      for i = 1, 3 do
-    --        idol:Activate()
-   --         task.wait(0.1);
-     --       if player.PlayerGui:FindFirstChild("ChoicePrompt") then break; end
-     --   end
+local idol = backpack:FindFirstChild("Idol of Yun'Shul")
+    if idol and aztup.automation:has_any() then
+        character.Humanoid:EquipTool(idol)
+        task.wait(0.3)
+        for i = 1, 3 do
+           idol:Activate()
+            task.wait(0.1);
+            if player.PlayerGui:FindFirstChild("ChoicePrompt") then break; end
+        end
         
-    --    local prompt = player.PlayerGui:WaitForChild("ChoicePrompt", 5)
-   --     if prompt and prompt:FindFirstChild("Choice") then
-      --      prompt.Choice:FireServer("Give me relief from my Flaws.")
-       --     local start = tick()
-     --       repeat task.wait(0.1) until not player.PlayerGui:FindFirstChild("ChoicePrompt") or tick() - start > 5
-  --      end
- --   end
+        local prompt = player.PlayerGui:WaitForChild("ChoicePrompt", 5)
+        if prompt and prompt:FindFirstChild("Choice") then
+            prompt.Choice:FireServer("Give me relief from my Flaws.")
+            local start = tick()
+            repeat task.wait(0.1) until not player.PlayerGui:FindFirstChild("ChoicePrompt") or tick() - start > 5
+        end
+    end
 
     local enchantStone = nil
     for _, tool in ipairs(backpack:GetChildren()) do
