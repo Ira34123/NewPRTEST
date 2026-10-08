@@ -71,25 +71,7 @@ return function(tab)
 
     local part
     local m1_hold_dependency_box = pvp:newDependencyBox("m1_hold");
-    m1_hold_dependency_box:newToggle("no_aerials", "Spoof No Air", false, "Never Aerials when holding M1.", 
-    function(value, id)
-        if value then
-          print("Enabled")
-          local root = local_player.root_part
-          if root and root:FindFirstChild("GroundSensor") then
-              task.wait(0.1)
-              if not part then
-                part = Instance.new("Part")
-            end    
-              print("SetPart")
-              root.GroundSensor.SensedPart = part
-          end
-        else
-          if part then
-            part:Destroy()
-          end
-        end
-     end
+    m1_hold_dependency_box:newToggle("no_aerials", "Spoof No Air", false, "Never Aerials when holding M1.", nil
     );
 
     
