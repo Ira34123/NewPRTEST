@@ -320,7 +320,6 @@ local features = {
     list_modules("features/removals/*"),
     list_modules("features/spoofing/*"),
     list_modules("features/visuals/*"),
-    list_modules("features/automation/*"),
 }
 
 function get_last_filename(path)
