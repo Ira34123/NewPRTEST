@@ -367,6 +367,9 @@ end;
             return        
 end;
 
+		if aztup.flags.no_fall and self == aztup.features.fall_multiplier.fall_remote then
+			return
+		end
         if aztup.flags.fall_multiplier and self == aztup.features.fall_multiplier.fall_remote then
             if aztup.flags.only_near_players then
                 local players_are_near = false;
