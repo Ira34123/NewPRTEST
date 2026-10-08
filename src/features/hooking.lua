@@ -422,7 +422,7 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
             if value.Magnitude < 0.2 then
                 return            
 			end;
-			elseif key == "SensedPart" and aztup.flags.no_aerials and self.Parent = local_player.root_part then
+			elseif key == "SensedPart" and aztup.flags.no_aerials and self.Parent == local_player.root_part then
 					if value then
 						return old_newindex(self, key, value, ...)
 					else
