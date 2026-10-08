@@ -431,8 +431,10 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
 		then
 		    if value then
 		        lastPart = value
+				print(lastPart, "setvalue")
 		        return old_newindex(self, key, value, ...)
 		    else
+				print(lastPart)
 		        return old_newindex(self, key, lastPart, ...)
 		    end
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
