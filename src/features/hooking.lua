@@ -413,7 +413,7 @@ local lastPart
 
 local old_newindex;
 old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ...)
-    if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "ActiveController" or key == "WalkSpeed") then
+    if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "ActiveController" or key == "WalkSpeed" or key == "SensedPart") then
         return old_newindex(self, key, value, ...)
     elseif aztup then
         local flags = aztup.flags;
