@@ -413,7 +413,7 @@ local lastPart
 local placeHolderPart
 local old_newindex;
 old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ...)
-    if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "WalkSpeed" or key == "SensedPart") then
+    if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "WalkSpeed" or key == "ActiveController" or key == "SensedPart") then
         return old_newindex(self, key, value, ...)
     elseif aztup then
         local flags = aztup.flags;
@@ -437,6 +437,8 @@ elseif flags.mob_ai_breaker and key == "Velocity" then
 				placeHolderPart = Instance.new("Part")
 				return old_newindex(self, key, placeHolderPart, ...)
 		    end
+				elseif aztup.flags.no_aerials and key == "ActiveController" and self.Parent = local_player.character then
+					return old_newindex(self, key, self:FindFirstChild("GroundController"), ...)
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
             if self.Name == "Character" then
                 return old_newindex(self, key, "", ...)            
