@@ -34,7 +34,7 @@ local autotitus = {
     player_safe_tween = function(self, cf, speed)
         if self.playerCheck(200) then
             self.serverHop();
-            while task.wait() do end
+            while task.wait(30) do self.serverHop() end
         end
 
         local root = local_player.root_part;
@@ -46,7 +46,7 @@ local autotitus = {
 
         if self.playerCheck(200, cf.Position) then
             self.serverHop();
-            while task.wait() do end
+            while task.wait(30) do self.serverHop() end
         end
 
         root.CFrame = cf;
@@ -65,7 +65,7 @@ function autotitus:enterDungeon()
     repeat
         if autotitus.playerCheck(200, meritPos.Position) then
             autotitus.serverHop()
-            while task.wait() do end
+            while task.wait(30) do autotitus.serverHop() end
         end 
 
         Tween.new(meritPos, true, 200).wait();
@@ -317,7 +317,7 @@ function autotitus:runDungeon()
         if tick() - startTime > 30 then
             if conn then conn:Disconnect(); end
             self.serverHop();
-            while task.wait() do end
+            while task.wait(30) do self.serverHop() end
         end
     until finished or not aztup.automation:has_any();
 
@@ -414,7 +414,8 @@ local state_machine = StateMachine.create({
 
                 if autotitus.playerCheck(200, tpLocation.Position) then
                     autotitus.serverHop()
-                    while task.wait() do end
+                    while task.wait(30) do  autotitus.serverHop()
+                            end
                 end
 
                 local_player.root_part.CFrame = tpLocation;
