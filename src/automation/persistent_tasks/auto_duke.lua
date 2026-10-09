@@ -556,6 +556,7 @@ struct = automation_struct:construct({
         "mod_detector",
         "fly",
         "m1_hold",
+        "no_aerials",
         'auto_wisp',
         "auto_equip_weapon"
     },
