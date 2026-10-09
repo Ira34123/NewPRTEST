@@ -661,20 +661,20 @@ end;
       --  aztup_toggles.show_timing_builder:SetValue(false);
     --end;
 
-    timings:newButton("Reload Timings", function()
-        xpcall(getgenv().load_timings, warn); 
-    end);
+   -- timings:newButton("Reload Timings", function()
+    --    xpcall(getgenv().load_timings, warn); 
+   -- end);
 
-    timings:newButton("Auto Hot Reload Timings [slow]", function()
-        local last_update = tick();
-        aztup.maid:give_task(services.RunService.RenderStepped:Connect(function()   
-            if tick() - last_update <= 5 then return end
-            if not getgenv().dev_tools_data or not getgenv().dev_tools_data["hot-reload-timings"] then return end
+ --   timings:newButton("Auto Hot Reload Timings [slow]", function()
+     --   local last_update = tick();
+     --   aztup.maid:give_task(services.RunService.RenderStepped:Connect(function()   
+       --     if tick() - last_update <= 5 then return end
+    --        if not getgenv().dev_tools_data or not getgenv().dev_tools_data["hot-reload-timings"] then return end
 
-            last_update = tick();
-            xpcall(getgenv().load_timings, warn);
-        end));   
-    end);
+    --        last_update = tick();
+   --         xpcall(getgenv().load_timings, warn);
+   --     end));   
+--    end);
 
     if can_edit_internal_timings or isfile("builder.rbxm") then
         local debug = tab:newGroupBox("Debug", true);
