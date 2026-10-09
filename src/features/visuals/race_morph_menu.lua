@@ -1,7 +1,6 @@
 local feature = Feature:new("race_morph_menu");
 
 function feature:enable()
-	print("race morph enabled")
 	if getgenv().race_morph_menu_loaded then
 		if getgenv().race_morph_menu_frame then
 			print(race_morph_menu_frame, "Frame")
@@ -59,7 +58,6 @@ local OurChoices = {
 }
 
 local MainGui 
-print("line 63")
 if RunService:IsStudio() then
 	MainGui = script:WaitForChild("MorphGui")
 else 	
@@ -75,14 +73,11 @@ else
 	MainGui = guiitself[1]	
 end
 local GlobalAssets = MainGui:WaitForChild("GlobalOrnaments")
-print("Line 78")
 GlobalAssets.Parent = PlayerGui
 
-print("Line 86")
 local EnchantEffects = MainGui:WaitForChild("EnchantmentEffects")
 print(EnchantEffects)
 EnchantEffects.Parent = PlayerGui
-print("Line 83")
 if not RunService:IsStudio() then
 	if isfolder("Project Rain/Deepwoken-Config/CustomEnchantments") then
 		local Files = listfiles("Project Rain/Deepwoken-Config/CustomEnchantments")
@@ -103,7 +98,6 @@ if not RunService:IsStudio() then
 		end
 	end
 end
-print("line 104")
 local OathEffects = MainGui:WaitForChild("OathOrnaments")
 OathEffects.Parent = PlayerGui
 
@@ -122,7 +116,6 @@ local ColorPicker = MainFrame:WaitForChild("ColorPicker")
 
 local CharacterMain = MainFrame:WaitForChild("Characters")
 local CharacterPageLayout = CharacterMain:WaitForChild("UIPageLayout")
-print("line 123")
 local Gradient = MainFrame:WaitForChild("Gradient")
 local ConfigButtons = MainFrame:WaitForChild("Configuration")
 local ConfigFrames = MainFrame:WaitForChild("ConfigMain")
@@ -136,7 +129,6 @@ local DeepAssets = ReplicatedStorage:WaitForChild("Assets")
 local function wait_for_child_timeout(parent, name, timeout)
 	return parent:WaitForChild(name, timeout or 5)
 end
-print("148")
 local DeepFaces = wait_for_child_timeout(DeepAssets, "Faces")
 local DeepFaceAssets = wait_for_child_timeout(DeepAssets, "FaceAssets")
 local DeepFacialMarkings = DeepFaceAssets and wait_for_child_timeout(DeepFaceAssets, "RaceMarking")
@@ -443,7 +435,6 @@ local function TheSwordTilter(Root)
 		until not Root.Parent
 	end)	
 end
-print("455")
 local function TheTailWiggler(Object,Head)
 	task.spawn(function()
 		local Bones = {}
@@ -1382,7 +1373,6 @@ local function RefreshOutfits()
 
 	ConfigFrames.UserConfig.ScrollingFrame.CanvasSize = UDim2.fromOffset(ConfigFrames.UserConfig.ScrollingFrame.UIListLayout.AbsoluteContentSize.X,ConfigFrames.UserConfig.ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
 end
-print("line 1394")
 local function LoadRace(Type,Data)
 	if (Type == "InGame" and not RaceConfig[Data])then
 
@@ -1745,7 +1735,6 @@ local function LoadRace(Type,Data)
 
 	end														
 end
-print("1748")
 local OathColors = {
 	["Visionshaper"] = Color3.fromRGB(221, 53, 255),
 	["Jetstriker"] = Color3.fromRGB(123, 215, 255)
@@ -1804,7 +1793,6 @@ local function GetClothes(id)
 		return "rbxassetid://0"
 	end
 end
-print("1807")
 local function GetBodyParts(Head,Torso,RightArm,LeftArm,RightLeg,LeftLeg)
 	local d = Instance.new("HumanoidDescription")
 	d.Head = Head
@@ -2319,7 +2307,6 @@ local function ApplyEnchants(Model,Name,All)
 	end
 
 end
-print("2322")
 local function ApplyToCharacter(cr,plr,skip,OrnamentsOnly)
 	local CurrentRace = (cr or OurChoices[CharacterPageLayout.CurrentPage.Name])
 
@@ -2960,7 +2947,6 @@ local function ApplyToCharacter(cr,plr,skip,OrnamentsOnly)
 
 	return true
 end
-print("line 2972")
 
 local function PromptScriptPermissions(RaceName)
 	if not MainFrame.ExecWarning.Visible and not AskedForRace[RaceName] then
@@ -4012,7 +3998,6 @@ ConfigButtons.GlobalOrnaments.MouseButton1Click:Connect(function()
 		MainFrame.ColorPicker.Visible = false
 	end
 end)
-print("line 4024")
 ConfigButtons.Settings.MouseButton1Click:Connect(function()
 	if not CharacterPageLayout.ScrollWheelInputEnabled then
 		for i,v in pairs(OurChoices.CON_FIG_DEEZ_NUTS_IN_YO_MOUF) do 
@@ -4289,9 +4274,7 @@ end)
 UIP.InputBegan:Connect(function(io,gpe)
 	if not gpe then
 		if io.KeyCode == Enum.KeyCode.F4 then
-			print("pressed f4")
 			if not MainFrame.Visible then
-				print("made visible")
 				MainFrame.Visible = true
 			else
 
@@ -4320,7 +4303,6 @@ UIP.InputBegan:Connect(function(io,gpe)
 	end
 end)
 
-print("Mainframe:", MainFrame)
 MainFrame.Visible = true
 MainGui.Parent = PlayerGui
 
@@ -4401,5 +4383,4 @@ function feature:disable()
 	end
 end;
 
-print("returned race morph")
 return feature
