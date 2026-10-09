@@ -70,7 +70,7 @@ local auto_voi = {
         end
 
         aztup.features.m1_hold.held = true;
-        --//aztup.flags.no_aerials = true;
+        aztup.flags.no_aerials = true;
     end,
 
     healthCheck = function(percent)
