@@ -620,7 +620,6 @@ function auto_loot:main()
     if not choice_prompt then return end
     if not choice_frame then return end
     if not self.is_loot_container(choice_prompt) then return end
-	print("LOOT")
     if not self.chest_check(options) then
         local count = 0
 
@@ -647,7 +646,6 @@ end
 local last_time = 0;
 return Feature:new("auto_loot", services.RunService.RenderStepped, function() 
     if tick() - last_time < 1 / 10 then return end
-	print("Running")
     last_time = tick()
     xpcall(
 		function()
