@@ -71,7 +71,11 @@ else
 		LocalPlayer:Kick("Race Morph Checksum : \nThe Script couldn't find the GUI, please make sure to set up the files correctly.")
 	end
 
-	MainGui = game:GetObjects(getcustomasset("Project Rain/Deepwoken-Config/GuiItself.rbxm"))[1]
+		local guiitself =  game:GetObjects(getcustomasset("Project Rain/Deepwoken-Config/GuiItself.rbxm"))
+	MainGui = guiitself[1]
+	print(guiitself)
+	for i, v in guiitself do print(i,v) end
+	
 end
 print("Line 76")
 local GlobalAssets = MainGui:WaitForChild("GlobalOrnaments")
