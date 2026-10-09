@@ -27,22 +27,15 @@ local Players = game:GetService("Players")
 local UIP = game:GetService("UserInputService")
 local TextService = game:GetService("TextService")
 local HttpService = game:GetService("HttpService")
-
+print("line 30")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = (
 	(RunService:IsStudio() and LocalPlayer.PlayerGui)
 	or (typeof(gethui) == "function" and gethui())
 	or game.CoreGui
 )
-local Slot = local_player.instance:GetAttribute("DataSlot") 
-
-if not Slot then
-	for i = 1, 5 do
-	Slot = local_player.instance:GetAttribute("DataSlot") 
-	task.wait(1)
-		end
-	end
-Slot = Slot or "A"
+print("line 37")
+local Slot = local_player.instance:GetAttribute("DataSlot") or "A"
 	
 local AskedForRace = {}
 
@@ -68,7 +61,7 @@ local OurChoices = {
 }
 
 local MainGui 
-
+print("line 63")
 if RunService:IsStudio() then
 	MainGui = script:WaitForChild("MorphGui")
 else 	
@@ -88,7 +81,7 @@ GlobalAssets.Parent = script
 
 local EnchantEffects = MainGui:WaitForChild("EnchantmentEffects")
 EnchantEffects.Parent = script
-
+print("Line 83")
 if not RunService:IsStudio() then
 	if isfolder("Project Rain/Deepwoken-Config/CustomEnchantments") then
 		local Files = listfiles("Project Rain/Deepwoken-Config/CustomEnchantments")
@@ -109,7 +102,7 @@ if not RunService:IsStudio() then
 		end
 	end
 end
-
+print("line 104")
 local OathEffects = MainGui:WaitForChild("OathOrnaments")
 OathEffects.Parent = script
 
@@ -128,7 +121,7 @@ local ColorPicker = MainFrame:WaitForChild("ColorPicker")
 
 local CharacterMain = MainFrame:WaitForChild("Characters")
 local CharacterPageLayout = CharacterMain:WaitForChild("UIPageLayout")
-
+print("line 123")
 local Gradient = MainFrame:WaitForChild("Gradient")
 local ConfigButtons = MainFrame:WaitForChild("Configuration")
 local ConfigFrames = MainFrame:WaitForChild("ConfigMain")
