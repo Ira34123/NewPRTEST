@@ -1537,30 +1537,30 @@ elseif target.Value ~= local_player.character then return action end;
 				if tick() - firstAnim > 3 then
 					firstAnim = tick();
 					return action				
-end
+				end
 				teleportedAt = tick();
-                action.when = 0.9;
+                action.when = 0.95;
                 action.ignore_hitbox = true;
                 action.name = string.format("Ferryman Teleport [1, %i]", math.round((hum.Health / hum.MaxHealth) * 100));
         
                 return action:push()			
-else
+			else
 				teleportedAt = tick();
                 action.when = 0.2;
                 action.ignore_hitbox = true;
                 action.name = string.format("Ferryman Teleport [2, %i]", math.round((hum.Health / hum.MaxHealth) * 100));
         
                 return action:push()			
-end
+			end
 		else
 			if tick()-teleportedAt > 2 then
 				if tick() - firstAnim > 3 then
 					firstAnim = tick();
 					return action				
-end
+				end
 				teleportedAt = tick();
 
-                action.when = 0.8;
+                action.when = 0.875;
                 action.ignore_hitbox = true;
                 action.name = string.format("Ferryman Teleport [3, %i]", math.round((hum.Health / hum.MaxHealth) * 100));
         
