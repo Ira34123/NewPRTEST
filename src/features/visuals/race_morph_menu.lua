@@ -1391,7 +1391,7 @@ local function RefreshOutfits()
 
 	ConfigFrames.UserConfig.ScrollingFrame.CanvasSize = UDim2.fromOffset(ConfigFrames.UserConfig.ScrollingFrame.UIListLayout.AbsoluteContentSize.X,ConfigFrames.UserConfig.ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
 end
-print("line 1394)
+print("line 1394")
 local function LoadRace(Type,Data)
 	if (Type == "InGame" and not RaceConfig[Data])then
 
@@ -2969,7 +2969,7 @@ local function ApplyToCharacter(cr,plr,skip,OrnamentsOnly)
 
 	return true
 end
-print("line 2972)
+print("line 2972")
 
 local function PromptScriptPermissions(RaceName)
 	if not MainFrame.ExecWarning.Visible and not AskedForRace[RaceName] then
@@ -4329,7 +4329,8 @@ UIP.InputBegan:Connect(function(io,gpe)
 	end
 end)
 
-MainFrame.Visible = false
+print("Mainframe:", MainFrame)
+MainFrame.Visible = true
 MainGui.Parent = PlayerGui
 
 getgenv().race_morph_menu_loaded = true
