@@ -1,5 +1,6 @@
 local last_update = tick();
-local mantras = require("@src/features/removals/mantra_revealer/mantras".."");
+local HttpService = game:GetService("HttpService")
+local mantras = HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/src/features/removals/mantra_revealer/mantras.json))()
 
 
 
