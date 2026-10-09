@@ -612,6 +612,7 @@ function auto_loot:always_loot(remote, loot)
 end
 
 function auto_loot:main()
+	print("MAIN")
     local choice_prompt = local_player.instance.PlayerGui:FindFirstChild('ChoicePrompt')
     local choice_frame = choice_prompt and choice_prompt:FindFirstChild('ChoiceFrame')
     local options = choice_frame and choice_frame:FindFirstChild('Options')
@@ -646,6 +647,7 @@ end
 
 local last_time = 0;
 return Feature:new("auto_loot", services.RunService.RenderStepped, function() 
+	print("RUNNING")
     if tick() - last_time < 1 / 10 then return end
     last_time = tick()
     xpcall(
