@@ -26,7 +26,7 @@ local function getJsonWithRetry(url)
         warn(("[Loader] Attempt %d failed: %s")
             :format(attempt, tostring(result)))
 
-        task.wait(math.min(attempt * 2, 60))
+        task.wait(math.min(attempt * 10, 60))
     end
 end
 
