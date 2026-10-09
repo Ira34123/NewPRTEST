@@ -1,6 +1,5 @@
 local DefendActionManager = require("@src/features/auto-parry/defend-action-manager")
 getgenv().DefendActionManager = DefendActionManager
-getgenv().Latency = require("@src/utility/latency")
 
 local function checkRange(obj, rangeCheck)
 	if not (obj and obj.Position and local_player and local_player.root_part) then
