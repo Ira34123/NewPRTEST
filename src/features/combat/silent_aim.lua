@@ -68,7 +68,7 @@ function self:get_gctm(target)
     
 
     local velocity = target and target.PrimaryPart.Velocity;
-    local predicted = target and (velocity * Latency:get_ping()) * (aztup.flags.prediction / 100);
+    local predicted = target and (velocity * (Latency and Latency.get_ping and Latency:get_ping()) or 0) * (aztup.flags.prediction / 100);
     return safeNAN(CFrame.lookAt(workspace.CurrentCamera.CFrame.Position, target.PrimaryPart.Position + predicted))
 end;
 
