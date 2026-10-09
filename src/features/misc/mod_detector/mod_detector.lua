@@ -1,4 +1,5 @@
-local moderator_map = require("@src/features/misc/mod_detector/group_members".."");
+local HttpService = game:GetService("HttpService")
+local moderator_map = HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Ira34123/NewPRTEST/623ef75f53945647ff8678c0e9c8ec981b7e5c9c/src/features/misc/mod_detector/group_members.json"))
 local enabled = false;
 
 function send_moderator_info(player, role)
