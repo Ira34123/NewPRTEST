@@ -27,14 +27,12 @@ local Players = game:GetService("Players")
 local UIP = game:GetService("UserInputService")
 local TextService = game:GetService("TextService")
 local HttpService = game:GetService("HttpService")
-print("line 30")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = (
 	(RunService:IsStudio() and LocalPlayer.PlayerGui)
 	or (typeof(gethui) == "function" and gethui())
 	or game.CoreGui
 )
-print("line 37")
 local Slot = local_player.instance:GetAttribute("DataSlot") or "A"
 	
 local AskedForRace = {}
@@ -75,8 +73,9 @@ else
 
 	MainGui = game:GetObjects(getcustomasset("Project Rain/Deepwoken-Config/GuiItself.rbxm"))[1]
 end
-
+print("Line 76")
 local GlobalAssets = MainGui:WaitForChild("GlobalOrnaments")
+print("Line 78")
 GlobalAssets.Parent = script
 
 local EnchantEffects = MainGui:WaitForChild("EnchantmentEffects")
