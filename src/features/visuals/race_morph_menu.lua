@@ -619,8 +619,8 @@ local function GetHair(Descriptor:HumanoidDescription)
 			local NewHair
 
 			if tonumber(v) then
-				if script:FindFirstChild(v) then
-					NewHair = script[v]:Clone()
+				if PlayerGui:FindFirstChild(v) then
+					NewHair = PlayerGui[v]:Clone()
 				else 
 					if RunService:IsStudio() then
 						NewHair = ReplicatedStorage.LoadAsset:InvokeServer(tonumber(v)):FindFirstChildOfClass("Accessory",true)
@@ -1906,7 +1906,7 @@ local EnchantConnections = {}
 
 local DefaultClothingTemplates = {}
 
-local PBRBackups = Instance.new("Folder",script)
+local PBRBackups = Instance.new("Folder",PlayerGui)
 
 local function ApplyEnchants(Model,Name,All)
 	local BaseFX = EnchantEffects:FindFirstChild(Name)
@@ -3146,11 +3146,11 @@ local function OutputSettings()
 
 	local JSON = game.HttpService:JSONEncode(Choice_Flash)
 	if RunService:IsStudio() then
-		if script:FindFirstChild(LocalPlayer.UserId.."_"..Slot) then
-			script[LocalPlayer.UserId.."_"..Slot]:Destroy()
+		if PlayerGui:FindFirstChild(LocalPlayer.UserId.."_"..Slot) then
+			PlayerGui[LocalPlayer.UserId.."_"..Slot]:Destroy()
 		end
 
-		local SAVE_FAKE = Instance.new("StringValue",script)
+		local SAVE_FAKE = Instance.new("StringValue",PlayerGui)
 		SAVE_FAKE.Name = LocalPlayer.UserId.."_"..Slot
 		SAVE_FAKE.Value = JSON
 	else 
@@ -3162,8 +3162,8 @@ local function InputSettings()
 	local JSON 
 
 	if RunService:IsStudio() then
-		if script:FindFirstChild(LocalPlayer.UserId.."_"..Slot) then
-			JSON  = script[LocalPlayer.UserId.."_"..Slot].Value
+		if PlayerGui:FindFirstChild(LocalPlayer.UserId.."_"..Slot) then
+			JSON  = PlayerGui[LocalPlayer.UserId.."_"..Slot].Value
 		else 
 
 			return nil
