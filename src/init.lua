@@ -326,6 +326,7 @@ function get_last_filename(path)
     return path:match("([^/]+)%.lua$")
 end
 
+print("LOADING FEATURES")
 for _, v in ipairs(features) do
     for _, path in ipairs(v) do
 		if aztup.features[get_last_filename(path)] then
@@ -339,8 +340,6 @@ for _, v in ipairs(features) do
 
             if not success then
                 warn("[FEATURE FAILED]", path, "ERROR:" .. result)
-            else
-                print("[FEATURE LOADED]", path, result)
             end
         end)
     end
