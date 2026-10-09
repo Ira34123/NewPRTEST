@@ -275,7 +275,7 @@ function autotitus:getechoes()
         local finalChoice = player.PlayerGui:WaitForChild("ChoicePrompt", 5) and player.PlayerGui:WaitForChild("ChoicePrompt", 5):WaitForChild("Choice", 5)
         if finalChoice then
             finalChoice:FireServer(true)
-            task.wait(2)
+            task.wait(3)
         end
     end
 end
