@@ -295,6 +295,7 @@ env.LoopUtil = require(("@src/utility/loop"));
 env.scheduler = require("@src/utility/scheduler");
 env.TargetFilter = require("@src/features/auto-parry/util/target-filter")
 env.ab_builder = require("@src/features/auto-builder/auto_builder");
+env.Latency = require("@src/utility/latency")
 aztup.automation.initialize();
 
 require(("@src/features/auto-parry/block-input-manager"))
