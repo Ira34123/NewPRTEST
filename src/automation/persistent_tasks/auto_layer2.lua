@@ -1260,6 +1260,7 @@ struct = automation_struct:construct({
         "noclip",
         'no_kill_bricks',
         "mod_detector",
+        "no_aerials",
         "fly",
         "anti_afk",
         "no_wind",
