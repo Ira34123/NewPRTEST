@@ -3248,6 +3248,7 @@ RunService.RenderStepped:Connect(function()
 end)
 
 UIP.InputBegan:Connect(function(io,gpe)
+	print(io.UserInputType, gpe)
 	if gpe then
 		if io.UserInputType == Enum.UserInputType.MouseButton1 then
 			if CanDragHue == true and DragSat == false then
