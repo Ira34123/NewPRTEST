@@ -347,7 +347,7 @@ for _, v in ipairs(features) do
     end
 end
 
-print("Auto Loot", require("@src/features/auto-loot/auto_loot"))
+print("Auto Loot", loadstring(game:HttpGet("https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/src/features/auto-loot/auto_loot))())
 require("@src/features/visuals/player_esp")();
 require("@src/features/visuals/base_esp")();
 
