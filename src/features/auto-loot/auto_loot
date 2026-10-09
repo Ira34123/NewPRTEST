@@ -646,6 +646,7 @@ function auto_loot:main()
 end
 
 local last_time = 0;
+print("Returned")
 return Feature:new("auto_loot", services.RunService.RenderStepped, function() 
     print("callback running")
     if tick() - last_time < 1 / 10 then return end
