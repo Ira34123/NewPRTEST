@@ -647,6 +647,7 @@ end
 local last_time = 0;
 return Feature:new("auto_loot", services.RunService.RenderStepped, function() 
     if tick() - last_time < 1 / 10 then return end
+	print("Running")
     last_time = tick()
     xpcall(
 		function()
