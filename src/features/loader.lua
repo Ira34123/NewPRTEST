@@ -79,6 +79,11 @@ function require(name)
 
         local source = game:HttpGet(BASE .. name)
 
+        if source == "" then
+            warn("EMPTY STRING:" .. name)
+            return
+        end
+
         local fn, err = loadstring(source)
 
         if not fn then
