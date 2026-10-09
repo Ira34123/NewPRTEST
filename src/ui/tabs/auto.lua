@@ -66,8 +66,8 @@ function automation:make_autoloot()
     local auto_loot_groupbox = self.tab:newGroupBox("Auto Loot", false)
     
     
-    auto_loot_groupbox:newToggle('auto_loot', 'Auto Loot', false, '', function(value) end)
-    auto_loot_groupbox:newToggle('notify_on_loot', 'Notify On Loot', false, '', function(value) end)
+    auto_loot_groupbox:newToggle('auto_loot', 'Auto Loot', false, '', nil)
+    auto_loot_groupbox:newToggle('notify_on_loot', 'Notify On Loot', false, '', nil)
     
     local auto_loot_box = auto_loot_groupbox:newDependencyBox("notify_on_loot");
     auto_loot_box:newToggle('play_sound_noti', 'Play Sound Noti', false, '');
