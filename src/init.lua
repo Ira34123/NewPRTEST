@@ -309,7 +309,6 @@ require(LPH_ENCSTR("@src/ui/ui")).initialize();
 local features = {
     list_modules("features/auto-builder/*"),
     list_modules("features/auto-fight/*"),
-    list_modules("features/auto-loot/*"),
     list_modules("features/auto-parry/*"),
     list_modules("features/buttons/*"),
     list_modules("features/combat/*"),
@@ -348,6 +347,7 @@ for _, v in ipairs(features) do
     end
 end
 
+require("@src/features/auto-loot/auto_loot")
 require("@src/features/visuals/player_esp")();
 require("@src/features/visuals/base_esp")();
 
