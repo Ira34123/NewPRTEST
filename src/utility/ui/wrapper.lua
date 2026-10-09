@@ -438,7 +438,6 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
-				print("TOGGLED", ID, Value)
 				if aztup.flags[ID] == Value then
 					return				
 				end
