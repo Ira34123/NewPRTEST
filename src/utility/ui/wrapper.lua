@@ -428,7 +428,7 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
-				if ID == "auto_loot" then print("TOGGLED", Value) end
+				print("TOGGLED", Value)
 				if aztup.flags[ID] == Value then
 					return				
 				end
@@ -449,8 +449,6 @@ end
 				if not feature then
 					return
 				end
-
-				if ID == "auto_loot" then print("FEATURE CONN") end
 
 				if feature.conn then 
 					if not feature.current_connection and Value then
