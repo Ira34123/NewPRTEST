@@ -22,7 +22,7 @@ do
     DependencyBox.__index = DependencyBox
 
     function DependencyBox:new(rawBox)
-        local self_dep = {/
+        local self_dep = {
             Box = rawBox
         }
         setmetatable(self_dep, DependencyBox) 
