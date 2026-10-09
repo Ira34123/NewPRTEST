@@ -345,9 +345,13 @@ end
 
 				task.spawn(xpcall, function() 
 					if Value then
-						feature:enable();
+								if feature then
+						feature.enabledvalue = true
+						feature:enable(); end
 					else
-						feature:disable();
+								if feature then
+						feature.enabledvalue = false
+						feature:disable(); end
 					end;
 				end, Logger.warn);
 			end,
@@ -412,9 +416,15 @@ end
 
 				task.spawn(xpcall, function() 
 					if Value then
-						feature:enable();
+						if feature then
+							feature.enabledvalue = true
+							feature:enable();
+						end
 					else
-						feature:disable();
+						if feature then
+							feature.enabledvalue = false
+							feature:disable();
+						end
 					end;
 				end, Logger.warn);
 			end,
@@ -468,9 +478,13 @@ end
 
 				task.spawn(xpcall, function() 
 					if Value then
-						feature:enable();
+								if feature then
+						feature.enabledvalue = true
+						feature:enable(); end
 					else
-						feature:disable();
+								if feature then
+						feature.enabledvalue = true
+						feature:disable(); end
 					end;
 				end, Logger.warn);
 			end,
