@@ -582,7 +582,7 @@ end
 local mystery_mantras = nil
 local HttpService = game:GetService("HttpService")
 pcall(function()
-    mystery_mantras = HttpService:JSONDecode("https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/src/features/removals/mantra_revealer/mantras.json"))
+    mystery_mantras = HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/src/features/removals/mantra_revealer/mantras.json"))
 end)
 
 local function card_is_mystery(card)
