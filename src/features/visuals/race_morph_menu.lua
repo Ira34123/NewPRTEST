@@ -105,18 +105,18 @@ if not RunService:IsStudio() then
 end
 print("line 104")
 local OathEffects = MainGui:WaitForChild("OathOrnaments")
-OathEffects.Parent = script
+OathEffects.Parent = PlayerGui
 
 local CustomAccourtments = MainGui:WaitForChild("CustomAccourtments")
-CustomAccourtments.Parent = script
+CustomAccourtments.Parent = PlayerGui
 
 local ExtraFaces = MainGui:WaitForChild("ExtraDeepFaces")
-ExtraFaces.Parent = script
+ExtraFaces.Parent = PlayerGui
 
 local MainFrame = MainGui:WaitForChild("CharacterFrame")
 
 local TemplateButtons  = MainGui:WaitForChild("TemplateButtons")
-TemplateButtons.Parent = script
+TemplateButtons.Parent = PlayerGui
 
 local ColorPicker = MainFrame:WaitForChild("ColorPicker")
 
@@ -637,7 +637,7 @@ local function GetHair(Descriptor:HumanoidDescription)
 					end
 
 					NewHair.Name = v
-					NewHair:Clone().Parent = script
+					NewHair:Clone().Parent = PlayerGui
 				end		
 				Accessories[i] = NewHair				
 			end
@@ -3279,7 +3279,7 @@ else
 
 		if not LoadedFiles[LoadedRace.Name] and (LoadedRace.Name ~= "You." and LoadedRace.Name ~= "CON_FIG_DEEZ_NUTS_IN_YO_MOUF") then
 			LoadedFiles[LoadedRace.Name] = File
-			LoadedRace.Parent = script
+			LoadedRace.Parent = PlayerGui
 			LoadRace(
 				"Custom",LoadedRace
 			)
