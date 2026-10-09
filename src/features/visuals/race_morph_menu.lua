@@ -145,7 +145,7 @@ local DeepAssets = ReplicatedStorage:WaitForChild("Assets")
 local function wait_for_child_timeout(parent, name, timeout)
 	return parent:WaitForChild(name, timeout or 5)
 end
-
+print("148")
 local DeepFaces = wait_for_child_timeout(DeepAssets, "Faces")
 local DeepFaceAssets = wait_for_child_timeout(DeepAssets, "FaceAssets")
 local DeepFacialMarkings = DeepFaceAssets and wait_for_child_timeout(DeepFaceAssets, "RaceMarking")
@@ -452,7 +452,7 @@ local function TheSwordTilter(Root)
 		until not Root.Parent
 	end)	
 end
-
+print("455")
 local function TheTailWiggler(Object,Head)
 	task.spawn(function()
 		local Bones = {}
@@ -1391,7 +1391,7 @@ local function RefreshOutfits()
 
 	ConfigFrames.UserConfig.ScrollingFrame.CanvasSize = UDim2.fromOffset(ConfigFrames.UserConfig.ScrollingFrame.UIListLayout.AbsoluteContentSize.X,ConfigFrames.UserConfig.ScrollingFrame.UIListLayout.AbsoluteContentSize.Y)
 end
-
+print("line 1394)
 local function LoadRace(Type,Data)
 	if (Type == "InGame" and not RaceConfig[Data])then
 
@@ -2969,6 +2969,7 @@ local function ApplyToCharacter(cr,plr,skip,OrnamentsOnly)
 
 	return true
 end
+print("line 2972)
 
 local function PromptScriptPermissions(RaceName)
 	if not MainFrame.ExecWarning.Visible and not AskedForRace[RaceName] then
@@ -4020,7 +4021,7 @@ ConfigButtons.GlobalOrnaments.MouseButton1Click:Connect(function()
 		MainFrame.ColorPicker.Visible = false
 	end
 end)
-
+print("line 4024")
 ConfigButtons.Settings.MouseButton1Click:Connect(function()
 	if not CharacterPageLayout.ScrollWheelInputEnabled then
 		for i,v in pairs(OurChoices.CON_FIG_DEEZ_NUTS_IN_YO_MOUF) do 
