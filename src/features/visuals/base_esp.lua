@@ -289,7 +289,7 @@ end;
 			if mesh and pcall(function()
 				return mesh.MeshId
 			end) then
-				return deepwoken_mesh_ids[tostring(mesh.MeshId:match("%d+"))] or "Dropped Item"
+				return (deepwoken_mesh_ids and deepwoken_mesh_ids[tostring(mesh.MeshId:match("%d+"))]) or "Dropped Item"
 			else
 				return "Dropped Item"
 			end
