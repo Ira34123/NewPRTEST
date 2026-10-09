@@ -22,7 +22,7 @@ do
     DependencyBox.__index = DependencyBox
 
     function DependencyBox:new(rawBox)
-        local self_dep = {
+        local self_dep = {/
             Box = rawBox
         }
         setmetatable(self_dep, DependencyBox) 
@@ -428,7 +428,7 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
-				print("TOGGLED", Value)
+				print("TOGGLED", ID, Value)
 				if aztup.flags[ID] == Value then
 					return				
 				end
