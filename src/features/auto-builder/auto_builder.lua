@@ -580,8 +580,9 @@ local function get_choice()
 end
 
 local mystery_mantras = nil
+local HttpService = game:GetService("HttpService")
 pcall(function()
-    mystery_mantras = require("@src/features/removals/mantra_revealer/mantras".."");
+    mystery_mantras = HttpService:JSONDecode("https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/src/features/removals/mantra_revealer/mantras.json"))
 end)
 
 local function card_is_mystery(card)
