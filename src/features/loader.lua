@@ -8,8 +8,29 @@ local HttpService = game:GetService("HttpService")
 local REPO =
     "https://api.github.com/repos/Ira34123/NewPRTEST/git/trees/master?recursive=1"
 
-local response = game:HttpGet(REPO)
-local data = HttpService:JSONDecode(response)
+local function getJsonWithRetry(url)
+    local attempt = 0
+
+    while true do
+        attempt += 1
+
+        local success, result = pcall(function()
+            local response = game:HttpGet(url)
+            return HttpService:JSONDecode(response)
+        end)
+
+        if success then
+            return result
+        end
+
+        warn(("[Loader] Attempt %d failed: %s")
+            :format(attempt, tostring(result)))
+
+        task.wait(math.min(attempt * 2, 60))
+    end
+end
+
+local data = getJsonWithRetry(REPO)
 
 function list_modules(pattern)
     local result = {}
