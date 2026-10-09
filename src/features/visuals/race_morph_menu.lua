@@ -34,22 +34,19 @@ local PlayerGui = (
 	or (typeof(gethui) == "function" and gethui())
 	or game.CoreGui
 )
-local Slot = LocalPlayer:GetAttribute("DataSlot")
+local Slot = local_player.instance:GetAttribute("DataSlot") 
 
+if not Slot then
+	for i = 1, 5 do
+	Slot = local_player.instance:GetAttribute("DataSlot") 
+	task.wait(1)
+		end
+	end
+Slot = Slot or "A"
+	
 local AskedForRace = {}
 
 local CURRENT_PROMPTING = false
-
-if (not Slot or Slot == "") then	
-	if RunService:IsStudio() then
-		Slot = "STUDIO"
-	else 
-		repeat
-			task.wait()
-			Slot = LocalPlayer:GetAttribute("DataSlot")
-		until not (not Slot or Slot == "")		
-	end
-end
 
 local LoadedFiles = {}
 local RaceConfig = {}
