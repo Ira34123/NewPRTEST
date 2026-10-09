@@ -6,7 +6,7 @@ getgenv().ProjectRainscriptran = true
 local HttpService = game:GetService("HttpService")
 
 local REPO =
-    "https://api.github.com/repos/Ira34123/NewPRTEST/git/trees/master?recursive=1"
+    "https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/master.json"
 
 local function getJsonWithRetry(url)
     local attempt = 0
