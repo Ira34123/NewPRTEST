@@ -1,7 +1,9 @@
+
+local HttpService = game:GetService("HttpService")
 return LPH_NO_VIRTUALIZE(function()
 	local settings_updated = false
 	local limited_esp_cache_result = false
-	local deepwoken_mesh_ids = require("@src/utility/deepwoken/deepwoken_meshes" .. "")
+	local deepwoken_mesh_ids = HttpService:JSONDecode(game:HttpGet("https://raw.githubusercontent.com/Ira34123/NewPRTEST/refs/heads/master/src/utility/deepwoken/deepwoken_meshes.json") or "")
 	local stored_damage_registry = require("@src/utility/stored_damage_registry")
 	local root_part_pos = Vector3.new(0, 0, 0)
 
