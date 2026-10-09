@@ -75,6 +75,7 @@ else
 	MainGui = guiitself[1]
 	print(guiitself)
 	for i, v in guiitself do print(i,v) end
+	for i,v in MainGui:GetChildren() do print("Main", i, v) end
 	
 end
 print("Line 76")
