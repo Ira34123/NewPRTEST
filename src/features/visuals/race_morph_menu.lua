@@ -1,9 +1,10 @@
 local feature = Feature:new("race_morph_menu");
 
 function feature:enable()
-
+	print("race morph enabled")
 	if getgenv().race_morph_menu_loaded then
 		if getgenv().race_morph_menu_frame then
+			print(race_morph_menu_frame, "Frame")
 			getgenv().race_morph_menu_frame.Visible = true;
 		end
 		return	
@@ -4295,7 +4296,9 @@ end)
 UIP.InputBegan:Connect(function(io,gpe)
 	if not gpe then
 		if io.KeyCode == Enum.KeyCode.F4 then
+			print("pressed f4")
 			if not MainFrame.Visible then
+				print("made visible")
 				MainFrame.Visible = true
 			else
 
@@ -4404,4 +4407,5 @@ function feature:disable()
 	end
 end;
 
+print("returned race morph")
 return feature
