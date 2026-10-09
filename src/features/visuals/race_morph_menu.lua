@@ -1745,7 +1745,7 @@ local function LoadRace(Type,Data)
 
 	end														
 end
-
+print("1748")
 local OathColors = {
 	["Visionshaper"] = Color3.fromRGB(221, 53, 255),
 	["Jetstriker"] = Color3.fromRGB(123, 215, 255)
@@ -1804,7 +1804,7 @@ local function GetClothes(id)
 		return "rbxassetid://0"
 	end
 end
-
+print("1807")
 local function GetBodyParts(Head,Torso,RightArm,LeftArm,RightLeg,LeftLeg)
 	local d = Instance.new("HumanoidDescription")
 	d.Head = Head
@@ -2319,7 +2319,7 @@ local function ApplyEnchants(Model,Name,All)
 	end
 
 end
-
+print("2322")
 local function ApplyToCharacter(cr,plr,skip,OrnamentsOnly)
 	local CurrentRace = (cr or OurChoices[CharacterPageLayout.CurrentPage.Name])
 
