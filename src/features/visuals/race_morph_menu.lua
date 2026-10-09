@@ -72,19 +72,16 @@ else
 	end
 
 		local guiitself =  game:GetObjects(getcustomasset("Project Rain/Deepwoken-Config/GuiItself.rbxm"))
-	MainGui = guiitself[1]
-	print(guiitself)
-	for i, v in guiitself do print(i,v) end
-	for i,v in MainGui:GetChildren() do print("Main", i, v) end
-	
+	MainGui = guiitself[1]	
 end
-print("Line 76")
 local GlobalAssets = MainGui:WaitForChild("GlobalOrnaments")
 print("Line 78")
-GlobalAssets.Parent = script
+GlobalAssets.Parent = PlayerGui
 
+print("Line 86")
 local EnchantEffects = MainGui:WaitForChild("EnchantmentEffects")
-EnchantEffects.Parent = script
+print(EnchantEffects)
+EnchantEffects.Parent = PlayerGui
 print("Line 83")
 if not RunService:IsStudio() then
 	if isfolder("Project Rain/Deepwoken-Config/CustomEnchantments") then
