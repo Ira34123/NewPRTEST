@@ -1539,7 +1539,7 @@ elseif target.Value ~= local_player.character then return action end;
 					return action				
 end
 				teleportedAt = tick();
-                action.when = 0.8;
+                action.when = 0.95;
                 action.ignore_hitbox = true;
                 action.name = string.format("Ferryman Teleport [1, %i]", math.round((hum.Health / hum.MaxHealth) * 100));
         
