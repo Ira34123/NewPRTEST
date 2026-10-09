@@ -348,6 +348,22 @@ for _, v in ipairs(features) do
 end
 
 require("@src/features/auto-loot/auto_loot")
+
+function sync_feature_states()
+    for id, enabled in pairs(aztup.flags) do
+
+        if enabled then
+            if aztup.flags[id] and aztup_toggles[id] then
+                aztup_toggles[id]:SetValue(false)
+                 task.wait(0.05)
+                  aztup_toggles[id]:SetValue(true)
+            end
+        end
+    end
+end
+
+sync_feature_states()
+
 require("@src/features/visuals/player_esp")();
 require("@src/features/visuals/base_esp")();
 
