@@ -153,7 +153,7 @@ end;
 
 if not game:GetService("Players").LocalPlayer.Character then
 	repeat
-		task.wait()
+		task.wait(1)
 	until game:GetService("Players").LocalPlayer.Character;
 	task.wait(2)
 end
