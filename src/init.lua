@@ -342,8 +342,6 @@ for _, v in ipairs(features) do
                 print("[FEATURE LOADED]", path, result)
             end
         end)
-
-        task.wait()
     end
 end
 
@@ -354,9 +352,11 @@ function sync_feature_states()
 
         if enabled then
             if aztup.flags[id] and aztup_toggles[id] then
+				task.spawn(function()
                 aztup_toggles[id]:SetValue(false)
                  task.wait(0.05)
                   aztup_toggles[id]:SetValue(true)
+					end)
             end
         end
     end
