@@ -428,7 +428,7 @@ end
 			Default = Default,
 			Tooltip = Tip,
 			Callback = function(Value)
-				if ID == "auto_loot" then print("TOGGLED", Value") end
+				if ID == "auto_loot" then print("TOGGLED", Value) end
 				if aztup.flags[ID] == Value then
 					return				
 				end
