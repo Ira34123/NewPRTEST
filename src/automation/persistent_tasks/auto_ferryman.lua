@@ -1523,7 +1523,6 @@ struct = automation_struct:construct({
         "m1_hold",
         "anti_fire",
         'auto_wisp',
-        'no_aerials',
         "mob_ai_breaker",
         "jesus",
         "auto_decline_guild_invites",
