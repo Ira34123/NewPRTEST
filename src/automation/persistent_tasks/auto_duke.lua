@@ -431,9 +431,12 @@ function autoduke:kill_duke()
     local duke = workspace.Live[".theduke11"]
     while workspace.Live:FindFirstChild(".theduke11") do
         task.wait();
+        print("tween start")
         Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
         print("tweening")
-        self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
+        aztup.features.m1_hold.held = not general:playing_ap_anims(workspace.Live[".theduke11"];
+        print("m1 held")
+      --  self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
 
        --     if not persistent_data:get("auto_duke") then break; end 
      --   if not duke:FindFirstChild("HumanoidRootPart") or not duke:FindFirstChild("Humanoid") or not duke.Parent then break; end
