@@ -9,7 +9,7 @@ if is_regular then
 end;
 local automation_struct = require("@src/automation/struct");
 
-local hold_m1 = false
+local hold_m1 = true
 
 local autoduke = {
     temp_tween = function(cf, speed)
