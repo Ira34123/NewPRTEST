@@ -308,6 +308,12 @@ function autoduke:create_instance()
 end
 
 function autoduke:kill_duke()
+    local Players = services.Players:GetPlayers() 
+    if #Players > 1 then
+        self.server_hop()
+        while task.wait(30) do self.server_hop() end
+    end
+
     services.RunService.Heartbeat:Connect(function() 
         aztup.features.m1_hold.held = hold_m1
     end)
