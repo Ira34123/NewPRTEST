@@ -431,6 +431,8 @@ function autoduke:kill_duke()
     local duke = workspace.Live[".theduke11"]
     while workspace.Live:FindFirstChild(".theduke11") do
         task.wait();
+        Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
+        print("tweening")
         self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
 
             if not persistent_data:get("auto_duke") then break; end 
@@ -443,7 +445,7 @@ function autoduke:kill_duke()
      --       )
       --  end;
 
-        if workspace.Live[".theduke11"].HumanoidRootPart.CFrame.Y <= -1000 then continue; end --[[continue because void can <bold>fail</bold>]]
+     --   if workspace.Live[".theduke11"].HumanoidRootPart.CFrame.Y <= -1000 then continue; end --[[continue because void can <bold>fail</bold>]]
         
      --   local x, y, z = select(1, workspace.Live[".theduke11"].HumanoidRootPart.CFrame:GetComponents());
      --   local x_sin = math.sin(tick() * 2) * 30;
@@ -466,7 +468,6 @@ function autoduke:kill_duke()
     --    else
    --         Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
      --   end
-        Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
     end
     print("done");
     self:m1_hold(false)
