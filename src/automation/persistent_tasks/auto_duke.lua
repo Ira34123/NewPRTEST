@@ -308,11 +308,13 @@ function autoduke:create_instance()
 end
 
 function autoduke:kill_duke()
-    local Players = services.Players:GetPlayers() 
-    if #Players > 1 then
-        self.server_hop()
-        while task.wait(30) do self.server_hop() end
-    end
+    if #services.Players:GetPlayers() ~= 1 then
+        task.delay(5, function()
+            server_utility:hop(local_player.instance:GetAttribute("DataSlot") or "A", true);
+        end);
+
+        return local_player.instance:Kick("AAAA WTF GUY IN OUR GAME !!!");
+    end;
 
     services.RunService.Heartbeat:Connect(function() 
         aztup.features.m1_hold.held = hold_m1
