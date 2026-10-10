@@ -435,8 +435,8 @@ function autoduke:kill_duke()
         print("tweening")
         self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
 
-            if not persistent_data:get("auto_duke") then break; end 
-        if not duke:FindFirstChild("HumanoidRootPart") or not duke:FindFirstChild("Humanoid") or not duke.Parent then break; end
+       --     if not persistent_data:get("auto_duke") then break; end 
+     --   if not duke:FindFirstChild("HumanoidRootPart") or not duke:FindFirstChild("Humanoid") or not duke.Parent then break; end
         
     --    if voiding_mode and not nope_tf_out and not general:playing_ap_anims(workspace.Live[".theduke11"]) and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Mantra:ChokeIce{{Frost Grab}}") then 
       --      local Event = local_player.character.CharacterHandler.Requests.ActivateMantra
