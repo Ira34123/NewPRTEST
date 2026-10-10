@@ -429,46 +429,45 @@ function autoduke:kill_duke()
     aztup_toggles.void_mobs:SetValue(voiding_mode);
 
     local duke = workspace.Live[".theduke11"]
-    aztup_toggles.attach_to_back:SetValue(true)
     while workspace.Live:FindFirstChild(".theduke11") do
         task.wait();
         self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
 
             if not persistent_data:get("auto_duke") then break; end 
-        if not duke:FindFirstChild("HumanoidRootPart") or not duke:FindFirstChild("Humanoid") or not duke.Parent or duke.Humanoid.Health <= 0 then break; end
+        if not duke:FindFirstChild("HumanoidRootPart") or not duke:FindFirstChild("Humanoid") or not duke.Parent then break; end
         
-        if voiding_mode and not nope_tf_out and not general:playing_ap_anims(workspace.Live[".theduke11"]) and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Mantra:ChokeIce{{Frost Grab}}") then 
-            local Event = local_player.character.CharacterHandler.Requests.ActivateMantra
-            Event:FireServer(
-                game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Mantra:ChokeIce{{Frost Grab}}")
-            )
-        end;
+    --    if voiding_mode and not nope_tf_out and not general:playing_ap_anims(workspace.Live[".theduke11"]) and game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Mantra:ChokeIce{{Frost Grab}}") then 
+      --      local Event = local_player.character.CharacterHandler.Requests.ActivateMantra
+      --      Event:FireServer(
+     --           game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Mantra:ChokeIce{{Frost Grab}}")
+     --       )
+      --  end;
 
         if workspace.Live[".theduke11"].HumanoidRootPart.CFrame.Y <= -1000 then continue; end --[[continue because void can <bold>fail</bold>]]
         
-        local x, y, z = select(1, workspace.Live[".theduke11"].HumanoidRootPart.CFrame:GetComponents());
-        local x_sin = math.sin(tick() * 2) * 30;
-        local z_cos = math.cos(tick() * 2) * 30;
-        if general:playing_ap_anims(workspace.Live[".theduke11"], {
-            "rbxassetid://8085349676"
-        }) or nope_tf_out then
-            KeyHandler:get_key("CriticalClick"):FireServer({
-                S = false,
-                NOAERIALS = false, 
-                Space = false,
-                Right = false,
-                W = false,
-                Left = true
-            }, false);
-            Tween.new(CFrame.new(x + x_sin, y < 70 and math.random(175, 250) or math.random(0, 10), z + z_cos), true, 250).wait();
-        elseif general:playing_ap_anims(workspace.Live[".theduke11"]) then
+     --   local x, y, z = select(1, workspace.Live[".theduke11"].HumanoidRootPart.CFrame:GetComponents());
+     --   local x_sin = math.sin(tick() * 2) * 30;
+    --    local z_cos = math.cos(tick() * 2) * 30;
+    --    if general:playing_ap_anims(workspace.Live[".theduke11"], {
+     --       "rbxassetid://8085349676"
+    --    }) or nope_tf_out then
+        --    KeyHandler:get_key("CriticalClick"):FireServer({
+        --        S = false,
+        --        NOAERIALS = false, 
+       --        Space = false,
+       --       Right = false,
+       --         W = false,
+       --         Left = true
+     --       }, false);
+     --       Tween.new(CFrame.new(x + x_sin, y < 70 and math.random(175, 250) or math.random(0, 10), z + z_cos), true, 250).wait();
+   --     elseif general:playing_ap_anims(workspace.Live[".theduke11"]) then
             --Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, 6, 0) * CFrame.Angles(math.rad(-90), 0, 0), true, 250).wait();        
-            Tween.new(CFrame.new(x + x_sin, y < 70 and math.random(175, 250) or math.random(0, 10), z + z_cos), true, 250).wait();
-        else
-            Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
-        end
+    --        Tween.new(CFrame.new(x + x_sin, y < 70 and math.random(175, 250) or math.random(0, 10), z + z_cos), true, 250).wait();
+    --    else
+   --         Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
+     --   end
+        Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
     end
-    aztup_toggles.attach_to_back:SetValue(false)
     print("done");
     self:m1_hold(false)
 
