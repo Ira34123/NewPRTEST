@@ -27,6 +27,8 @@ end;
         local body_parts = {
         local_player.character:FindFirstChild("Head"),
         local_player.character:FindFirstChild("HumanoidRootPart"),
+        local_player.character:FindFirstChild("Left Leg"),
+        local_player.character:FindFirstChild("Right Leg"),
     }
 
     for _, part in local_player.character:QueryDescendants('BasePart[CanCollide = true]') do 
