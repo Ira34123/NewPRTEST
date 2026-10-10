@@ -555,6 +555,7 @@ struct = automation_struct:construct({
         "no_fall",
         "noclip",
         'no_kill_bricks',
+        "auto_parry",
         "mod_detector",
         "fly",
         "m1_hold",
