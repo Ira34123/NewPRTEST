@@ -766,7 +766,6 @@ AutoProgression.internal_struct = require("@src/automation/struct"):construct({
         "auto_parry",
         "no_fire",
         "m1_hold",
-        "no_aerials",
         "no_stun",
         "fast_swing",
         "auto_decline_guild_invites",
