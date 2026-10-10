@@ -148,14 +148,14 @@ if aztup.automation:should_auto_start() then
         start:FireServer(true)
         task.wait(0.5)
     until game:GetService("Players").LocalPlayer.Character;
-    task.wait(1);
+    task.wait(3);
 end;
 
 if not game:GetService("Players").LocalPlayer.Character then
 	repeat
 		task.wait(1)
 	until game:GetService("Players").LocalPlayer.Character;
-	task.wait(2)
+	task.wait(3)
 end
 
 local success, result = pcall(function()
