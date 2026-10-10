@@ -1290,9 +1290,11 @@ function autoferryman:kill_ferryman()
     local last = 0;
     local last_attunement = 0;
     local started_tweening = false;
+    local LowestHP = 0.35
+    if EffectReplicator:HasEffect("FragileHeart") then LowestHP = 0.5 end
     xpcall(function()
         repeat
-                if (local_player.humanoid.Health <= (local_player.humanoid.MaxHealth * .35)) then
+                if (local_player.humanoid.Health <= (local_player.humanoid.MaxHealth * LowestHP)) then
                     self.m1_hold(false)
 
                     repeat
