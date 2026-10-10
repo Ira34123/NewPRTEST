@@ -79,7 +79,7 @@ local autoduke = {
     end,
     m1_hold = function(toggle)
         if not toggle then
-            hold_m1 = false
+            hold_m1 = true
             return
         end
         
