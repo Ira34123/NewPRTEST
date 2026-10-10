@@ -434,7 +434,7 @@ function autoduke:kill_duke()
         print("tween start")
         Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
         print("tweening")
-        aztup.features.m1_hold.held = not general:playing_ap_anims(workspace.Live[".theduke11"];
+        aztup.features.m1_hold.held = not general:playing_ap_anims(workspace.Live[".theduke11"]);
         print("m1 held")
       --  self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
 
