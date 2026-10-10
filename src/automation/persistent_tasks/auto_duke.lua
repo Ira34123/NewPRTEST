@@ -429,6 +429,7 @@ function autoduke:kill_duke()
     aztup_toggles.void_mobs:SetValue(voiding_mode);
 
     local duke = workspace.Live[".theduke11"]
+    aztup_toggles.attach_to_back:SetValue(true)
     while workspace.Live:FindFirstChild(".theduke11") do
         task.wait();
         self:m1_hold(not general:playing_ap_anims(workspace.Live[".theduke11"]));
@@ -467,6 +468,7 @@ function autoduke:kill_duke()
             Tween.new(workspace.Live[".theduke11"].HumanoidRootPart.CFrame * CFrame.new(0, -6, 0) * CFrame.Angles(math.rad(90), 0, 0), true, 250).wait();        
         end
     end
+    aztup_toggles.attach_to_back:SetValue(false)
     print("done");
     self:m1_hold(false)
 
