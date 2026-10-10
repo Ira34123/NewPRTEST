@@ -44,7 +44,7 @@ local autotitus = {
     player_safe_tween = function(self, cf, speed)
         if self.playerCheck(200) then
             self.serverHop();
-            while task.wait() do end
+            while task.wait(30) do self.serverHop(); end
         end
         
         local root = local_player.root_part;
@@ -57,7 +57,7 @@ local autotitus = {
         
         if self.playerCheck(200, cf.Position) then
             self.serverHop();
-            while task.wait() do end
+              while task.wait(30) do self.serverHop(); end
         end
         
         root.CFrame = cf;
@@ -213,7 +213,7 @@ function autotitus:enterDungeon()
     repeat
         if autotitus.playerCheck(200, meritPos.Position) then
             autotitus.serverHop()
-            while task.wait() do end
+             while task.wait(30) do self.serverHop(); end
         end
 
         if entry and entry:FindFirstChild("InteractPrompt") then
@@ -363,7 +363,7 @@ function autotitus:runDungeon()
         if tick() - startTime > 30 then
             if conn then conn:Disconnect(); end
             self.serverHop();
-            while task.wait() do end
+            while task.wait(30) do self.serverHop(); end
         end
     until finished or not aztup.automation:has_any();
 
@@ -494,7 +494,7 @@ struct = automation_struct:construct({
                     if autotitus.playerCheck(200, tpLocation.Position) then
                         -- Serverhop to small server, will kick for now
                         autotitus.serverHop()
-                        while task.wait() do end
+                         while task.wait(30) do self.serverHop(); end
                     end
                     
                     local_player.root_part.CFrame = tpLocation;
@@ -720,7 +720,7 @@ struct = automation_struct:construct({
                     while task.wait() do
                         if autotitus.playerCheck(200) then
                             autotitus.serverHop();
-                            while task.wait() do end
+                            while task.wait(30) do self.serverHop(); end
                         end
                     end;
                 end)
@@ -749,7 +749,7 @@ struct = automation_struct:construct({
                 while not done_banking and tick() - start <= 120 do
                     if autotitus.playerCheck(200) then
                         autotitus.serverHop();
-                        while task.wait() do end
+                        while task.wait(30) do self.serverHop(); end
                     end
                     Tween.new(workspace.NPCs:WaitForChild("Banker"):GetPivot() * CFrame.new(0, -6, 0), true, 150).wait();
                     task.wait();
