@@ -3,7 +3,7 @@ local bv = Instance.new("BodyVelocity");
 bv.Name = "SlideVel";
 bv.MaxForce = Vector3.new(1000000, 1000000, 1000000);
 bv:AddTag("AllowedBM");
---local collision_utils = base_require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("CollisionUtils"));
+local collision_utils = base_require(game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("CollisionUtils"));
     local spoofing = false;
     local old_y;
 
@@ -166,11 +166,56 @@ end;
     end
 
     speed = math.min(EffectReplicator:FindEffect("Knocked") and 350 or 250, speed)
-			
+
+    if aztup.flags.pull_to_ground and not aztup.flags.noclip then
+        if not services.UserInputService:IsKeyDown(Enum.KeyCode.Space) and not services.UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) and not EffectReplicator:HasEffect("Swimming") then
+            local close_to_ground = collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -7.5, 0), collision_utils.solidParams);
+            local getting_close_to_ground = collision_utils:Raycast(local_player.root_part.Position, Vector3.new(0, -25, 0), collision_utils.solidParams);
+
+            direction = direction + Vector3.new(0, close_to_ground and -1 or (getting_close_to_ground and -0.75 or -0.3), 0);
+        end;
+    end
+
+    local ground_controller_should_be_used = false;
     current_bv.MaxForce = Vector3.new(1000000, 1000000, 1000000);
+    if aztup.flags.ignore_ground and not general:in_air() and not EffectReplicator:HasEffect("Swimming") and not aztup.flags.noclip then
+        current_bv.MaxForce = Vector3.new(1000000, 0, 1000000);
+        ground_controller_should_be_used = true;
+    end
 
 	current_bv.Parent = local_player.root_part;
     current_bv.Velocity = direction * speed; 
+    
+    local ground_sensor = local_player.root_part:FindFirstChild("GroundSensor")
+    if not ground_sensor then
+        return
+    end
+
+    local controller_manager = local_player.character:FindFirstChild("ControllerManager")
+    if not controller_manager then
+        return
+    end
+
+    local ground_controller = controller_manager:FindFirstChild("GroundController")
+    if not ground_controller then
+        return
+    end
+
+    local air_controller = controller_manager:FindFirstChild("AirController")
+    if not air_controller then
+        return
+    end
+
+    controller_manager.ActiveController = ground_controller_should_be_used and ground_controller or air_controller
+
+    if not ground_controller_should_be_used and aztup.flags.noclip then
+        ground_sensor.SensorMode = Enum.SensorMode.ClassicLadder;
+        ground_sensor.UpdateType = Enum.SensorUpdateType.OnRead;
+    else 
+        ground_sensor.SensorMode = Enum.SensorMode.Floor;
+        ground_sensor.UpdateType = Enum.SensorUpdateType.Manual;
+    end
+
     return
 end));
 
@@ -263,6 +308,14 @@ function feature:disable()
     if effect then
         effect:Debris(1);
     end;
+    
+    local ground_sensor = local_player.root_part:FindFirstChild("GroundSensor")
+    if not ground_sensor then
+        return
+    end
+
+    ground_sensor.SensorMode = Enum.SensorMode.Floor;
+    ground_sensor.UpdateType = Enum.SensorUpdateType.Manual;
 end;
 
 return feature
