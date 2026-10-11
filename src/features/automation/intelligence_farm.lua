@@ -1,7 +1,6 @@
 
 
 local feature = Feature:new("auto_math_book", local_player.instance.PlayerGui.ChildAdded, LPH_NO_VIRTUALIZE(function(Child)
-    print("added")
     if Child.Name ~= "ChoicePrompt" or not Child:FindFirstChild("ChoiceFrame") then
         return
     end
