@@ -1,18 +1,22 @@
 
 
 local feature = Feature:new("auto_math_book", local_player.instance.PlayerGui.ChildAdded, LPH_NO_VIRTUALIZE(function(Child)
+    print("added")
     if Child.Name ~= "ChoicePrompt" or not Child:FindFirstChild("ChoiceFrame") then
         return
     end
 
     if local_player.instance.PlayerGui:FindFirstChild('ChoicePrompt') then
+        print("choicefound")
         local ChoiceFrame = Child:FindFirstChild("ChoiceFrame")
         local DescSheet = ChoiceFrame:FindFirstChild("DescSheet")
         local ChoiceEvent = Child:FindFirstChild("Choice")
-    
+        print("here")
         if DescSheet then
+            print("descsheet")
             local Operation
             local Desc = DescSheet:WaitForChild("Desc")
+            print("desc")
             if string.match(Desc.Text:lower(), "plus") then
                 Operation = "plus"
             elseif string.match(Desc.Text:lower(), "divided") then
