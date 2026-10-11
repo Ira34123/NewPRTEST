@@ -1,15 +1,17 @@
 
 
 local feature = Feature:new("auto_math_book", local_player.instance.PlayerGui.ChildAdded, LPH_NO_VIRTUALIZE(function(Child)
+    print("childADded")
     if Child.Name ~= "ChoicePrompt" or not Child:FindFirstChild("ChoiceFrame") then
         return
     end
+    print("choiceframe found")
 
     if local_player.instance.PlayerGui:FindFirstChild('ChoicePrompt') then
+        print("choiceprompt found")
         local ChoiceFrame = Child:FindFirstChild("ChoiceFrame")
         local DescSheet = ChoiceFrame:FindFirstChild("DescSheet")
         local ChoiceEvent = Child:FindFirstChild("Choice")
-    
         if DescSheet then
             local Operation
             local Desc = DescSheet:WaitForChild("Desc")
@@ -22,9 +24,11 @@ local feature = Feature:new("auto_math_book", local_player.instance.PlayerGui.Ch
             elseif string.match(Desc.Text:lower(), "times") then
                 Operation = "mult"
             end
+            print("children found")
     
             local Text = string.split(Desc.Text, " ")
             if not Text[5] then return end
+                print("text found")
             local Num1, Num2 = Text[3], string.gsub(Text[5], "?", "")
             local Solved
             if Operation == "mult" then
@@ -51,6 +55,7 @@ local feature = Feature:new("auto_math_book", local_player.instance.PlayerGui.Ch
                     end
                 end
             end
+            print("done")
         end;
     end
 end))
