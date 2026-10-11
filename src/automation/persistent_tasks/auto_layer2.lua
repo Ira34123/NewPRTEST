@@ -1263,15 +1263,14 @@ struct = automation_struct:construct({
         "no_aerials",
         "fly",
         "anti_afk",
+        "auto_parry",
         "no_wind",
         "m1_hold",
         "auto_equip_weapon"
     },
     not_allowed = function()
         if not aztup.flags.auto_parry then
-            task.delay(1, function() 
-                Logger:notify_sound("Skipped running Auto L2 because Auto Parry is not on, Please setup auto parry on your auto load configuration.")
-            end)
+            aztup_toggles.auto_parry:SetValue(true)
         end
         return not aztup.flags.auto_parry;
     end,
