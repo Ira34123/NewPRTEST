@@ -412,11 +412,9 @@ if isfunctionhooked(getrawmetatable(game).__newindex) then
     restorefunction(getrawmetatable(game).__newindex);
 end
 
-local lastPart
-local placeHolderPart
 local old_newindex;
 old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ...)
-    if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "WalkSpeed" or key == "SensedPart") then
+    if checkcaller() or not (key == "Ambient" or key == "Velocity" or key == "Text" or key == "ActiveController" or key == "WalkSpeed") then
         return old_newindex(self, key, value, ...)
     elseif aztup then
         local flags = aztup.flags;
@@ -426,20 +424,7 @@ old_newindex = hookmetamethod(game, "__newindex", (function(self, key, value, ..
 elseif flags.mob_ai_breaker and key == "Velocity" then
             if value.Magnitude < 0.2 then
                 return            
-			end;
-
-		elseif aztup.flags.no_aerials and key == "SensedPart" and self.Parent == local_player.root_part then
-		    if value then
-		        lastPart = value
-		        return old_newindex(self, key, value, ...)
-		    elseif lastPart then
-		        return old_newindex(self, key, lastPart, ...)
-			elseif placeHolderPart then
-				return old_newindex(self, key, placeHolderPart, ...)
-			else
-				placeHolderPart = Instance.new("Part")
-				return old_newindex(self, key, placeHolderPart, ...)
-		    end
+end;
         elseif flags.streamer_mode and key == "Text" and (self.Name == "Character" or self.Name == "Slot") and self.Parent.Name == "CharacterInfo" then
             if self.Name == "Character" then
                 return old_newindex(self, key, "", ...)            
@@ -447,7 +432,14 @@ else
                 value = value:gsub(services.Players.LocalPlayer.UserId, "0");
                 return old_newindex(self, key, value, ...)            
 end
+        elseif 
+            (flags.fly or flags.noclip)
+            and key == "ActiveController"
+            and self.Parent == local_player.character
+        then
+            local airController = self.Parent:FindFirstChild("AirController")
 
+            return old_newindex(self, key, airController or value)
         elseif  
             flags.multiply_s 
             and key == "WalkSpeed"
@@ -467,6 +459,7 @@ end
 
     return old_newindex(self, key, value, ...)
 end))
+
 
 Logger.log_for_devs("[hooking] hooking unreliable_remote.fire_server");
 
