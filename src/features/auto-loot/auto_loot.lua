@@ -240,6 +240,7 @@ local auto_loot = {
 
     is_loot_container = function(choice_prompt)
         local title = choice_prompt:FindFirstChild('ChoiceFrame'):FindFirstChild('Title')
+		if not title or not title.Text then return end
         return title.Text:lower():find('treasure chest') or title.Text:lower():find('loot')
     end
 }
