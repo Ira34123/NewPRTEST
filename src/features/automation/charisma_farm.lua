@@ -1,9 +1,7 @@
 local feature = Feature:new("auto_charisma", local_player.instance.PlayerGui.ChildAdded, LPH_NO_VIRTUALIZE(function(choice_prompt)
-    print("auto charisma")
     if choice_prompt.Name ~= "ChoicePrompt" or not choice_prompt:FindFirstChild("ChoiceFrame") then
         return
     end
-    print("es")
     if choice_prompt then
         local ChoiceFrame = choice_prompt:FindFirstChild("ChoiceFrame")
         local Desc = ChoiceFrame:FindFirstChild("Desc")
