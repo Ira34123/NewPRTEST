@@ -1,11 +1,8 @@
 
 
-local feature = Feature:new("auto_math_book", local_player.instance.PlayerGui.ChildAdded, LPH_NO_VIRTUALIZE(function(Child)
-    print("childADded")
-    if Child.Name ~= "ChoicePrompt" or not Child:FindFirstChild("ChoiceFrame") then
-        return
-    end
-    print("choiceframe found")
+local feature = Feature:new("auto_math_book", game:GetService("RunService").Stepped, LPH_NO_VIRTUALIZE(function(Child)
+
+    print("running")
 
     if local_player.instance.PlayerGui:FindFirstChild('ChoicePrompt') then
         print("choiceprompt found")
