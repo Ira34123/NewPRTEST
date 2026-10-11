@@ -314,6 +314,7 @@ local features = {
     list_modules("features/buttons/*"),
     list_modules("features/combat/*"),
     list_modules("features/exploits/*"),
+	list_modules("features/automation/*"),
     list_modules("features/misc/*"),
     list_modules("features/movement/*"),
     list_modules("features/qol/*"),
