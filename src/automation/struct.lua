@@ -59,7 +59,7 @@ automation_struct.run = LPH_NO_VIRTUALIZE(function(self)
 
 		if feature == "noclip" then
 			print("es")
-			if not aztup_toggles.noclip then
+			if aztup_toggles.noclip then
 				task.spawn(function()
 					aztup_toggles.noclip:SetValue(true)
 					task.wait(0.05)
