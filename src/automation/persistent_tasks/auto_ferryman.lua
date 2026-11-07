@@ -1521,7 +1521,7 @@ struct = automation_struct:construct({
         'no_kill_bricks',
         "mod_detector",
         "fly",
-        "aa_bypass",
+        --"aa_bypass",
         "m1_hold",
         "anti_fire",
         'auto_wisp',
