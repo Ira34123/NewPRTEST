@@ -57,17 +57,6 @@ automation_struct.run = LPH_NO_VIRTUALIZE(function(self)
         
         aztup.flags[feature] = true;
 
-		if feature == "noclip" then
-			if aztup_toggles.noclip then
-				task.spawn(function()
-					aztup_toggles.noclip:SetValue(true)
-					task.wait(0.05)
-					aztup_toggles.noclip:SetValue(false)
-					task.wait(0.05)
-					aztup_toggles.noclip:SetValue(true)
-				end)
-			end
-		end
         
         local feat = aztup.features[feature];
 		if not feat then
