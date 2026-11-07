@@ -313,13 +313,31 @@ function autotitus:runDungeon()
         end
     end);
 
+    local function es(time, success)
+        local fileName = "Logs.txt"
+        
+        -- Create the file if it doesn't exist
+        if not isfile(fileName) then
+            writefile(fileName, "")
+        end
+        
+        -- Append the log entry
+        local log = "Time: " .. time .. "\nSuccess: " .. tostring(success) .. "\n\n"
+        
+        appendfile(fileName, log)
+        
+        print("Log saved successfully!")
+    end
+
     repeat task.wait(0.2)
         if tick() - startTime > 30 then
+            es(tick() - startTime, "FAILED")
             if conn then conn:Disconnect(); end
             self.serverHop();
             while task.wait(30) do self.serverHop() end
         end
     until finished or not aztup.automation:has_any();
+    es(tick() - startTime, "SUCCESS")
 
     if conn then conn:Disconnect(); end
     
