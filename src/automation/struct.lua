@@ -120,14 +120,15 @@ automation_struct.create_character = function(self)
 			task.wait(0.1)
 		end
 	end)
-
+	if options.origin then
 	    for _ = 1, 10 do
-	    	suc = pickSpawn:InvokeServer(options.origin or "Merit")
+	    	suc = pickSpawn:InvokeServer(options.origin)
 	    	if suc then
 	    		break
 	    	end
 	    	task.wait(0.1)
 	    end
+	end
 
     if options.weapon then
 	    for _ = 1, 10 do
