@@ -945,23 +945,23 @@ function autoferryman:create_instance()
     local spoofing = false;
     local spoof_at;
 
-    task.spawn(function() 
-        aztup.flags.silent_aim = true;
-        while task.wait(1 / 30) do
-            if not spoofing then continue end;
+    --task.spawn(function() 
+     --   aztup.flags.silent_aim = true;
+     --   while task.wait(1 / 30) do
+       --     if not spoofing then continue end;
 
-            local v809 = buffer.create(24);
-            buffer.writef64(v809, 0, spoof_at.X);
-            buffer.writef64(v809, 8, spoof_at.Y);
-            buffer.writef64(v809, 16, spoof_at.Z);
-            local requests = services.ReplicatedStorage:FindFirstChild("Requests");
-            local update_mouse = requests and requests:FindFirstChild("UpdateMouse");
+     --       local v809 = buffer.create(24);
+      --      buffer.writef64(v809, 0, spoof_at.X);
+       --     buffer.writef64(v809, 8, spoof_at.Y);
+      --      buffer.writef64(v809, 16, spoof_at.Z);
+        --    local requests = services.ReplicatedStorage:FindFirstChild("Requests");
+        --    local update_mouse = requests and requests:FindFirstChild("UpdateMouse");
 
-            if update_mouse then
-                update_mouse:FireServer(v809);
-            end;
-        end;
-    end);
+      --      if update_mouse then
+       --         update_mouse:FireServer(v809);
+       --     end;
+    --    end;
+   -- end);
 
     task.wait(1.5) -- so we dont lagspike and place incorrectly
 
@@ -1051,44 +1051,77 @@ function autoferryman:create_instance()
         return false
     end
 
-    for _, location in {
+--    for _, location in {
+    --    {
+      --      MouseCF = CFrame.new(-4092.21118, 62.9762077, 9410.96094),
+         --   CFrame =  CFrame.new(-4091.36743, 65.8562164, 9406.87793)
+     --   },
+  --      {
+     --       MouseCF =  CFrame.new(-4108.79053, 62.763382, 9421.04004),
+        --    CFrame = CFrame.new(-4109.85938, 65.8506699, 9417.92773)
+     --   },
+  --      {
+   --         MouseCF = CFrame.new(-4096.95654, 62.7243958, 9440.11621),
+      --      CFrame =  CFrame.new(-4098.92334, 65.8594055, 9440.22363),
+     --   },
+    --    {
+    --        MouseCF = CFrame.new(-4080.64844, 62.9762077, 9428.41309),
+      --      CFrame =  CFrame.new(-4078.77832, 65.7046738, 9424.35156),
+   --     }
+ --   } do
+  --     if not campfire_exists_near(location.CFrame.Position, 12) then
+     --       place_campfire(location)
+  --      end
+  --  end
+
+    local locations = {
         {
             MouseCF = CFrame.new(-4092.21118, 62.9762077, 9410.96094),
-            CFrame =  CFrame.new(-4091.36743, 65.8562164, 9406.87793)
+            CFrame =  CFrame.new(-4089.189208984375, 63.114959716796875, 9396.7900390625)
         },
         {
             MouseCF =  CFrame.new(-4108.79053, 62.763382, 9421.04004),
-            CFrame = CFrame.new(-4109.85938, 65.8506699, 9417.92773)
+            CFrame = CFrame.new(-4065.959228515625, 63.224952697753906, 9431.6005859375)
         },
         {
             MouseCF = CFrame.new(-4096.95654, 62.7243958, 9440.11621),
-            CFrame =  CFrame.new(-4098.92334, 65.8594055, 9440.22363),
+            CFrame =  CFrame.new(-4101.5625, 63.114959716796875, 9454.6435546875),
         },
         {
             MouseCF = CFrame.new(-4080.64844, 62.9762077, 9428.41309),
-            CFrame =  CFrame.new(-4078.77832, 65.7046738, 9424.35156),
+            CFrame =  CFrame.new(-4124.2001953125, 63.114959716796875, 9418.9462890625),
         }
-    } do
+    }
+
+    for _, location in locations do
         if not campfire_exists_near(location.CFrame.Position, 12) then
             place_campfire(location)
         end
     end
     --aztup.flags.silent_aim = false;
 
-    self.temp_tween(CFrame.new(-4103.17822, 65.7434998, 9413.24609), false, 200);
-    task.wait(.5);
-    pcall(function(...)  
-        firestarter():FireServer()
-    end)
-    task.wait(3);
-    self.temp_tween(CFrame.new(-4086.92041, 65.7434998, 9437.04395), false, 200);
-    task.wait(.5);
-    pcall(function(...)  
-        firestarter():FireServer()
-    end)
-    task.wait(3);
+    for _, location in locations do
+        self.temp_tween(location.CFrame, false, 200);
+        task.wait(.5);
+        pcall(function(...)  
+            firestarter():FireServer()
+        end)
+    end
 
-    --pcall(function() task.cancel(playercheck) end)
+  --  self.temp_tween(CFrame.new(-4103.17822, 65.7434998, 9413.24609), false, 200);
+   -- task.wait(.5);
+ --   pcall(function(...)  
+ --       firestarter():FireServer()
+ --   end)
+   -- task.wait(3);
+   -- self.temp_tween(CFrame.new(-4086.92041, 65.7434998, 9437.04395), false, 200);
+  --  task.wait(.5);
+--    pcall(function(...)  
+--        firestarter():FireServer()
+--    end)
+--    task.wait(3);
+
+pcall(function() task.cancel(playercheck) end)
 
     local time_wait = tick()
     repeat task.wait() until ((tick() - time_wait) >= 20)
