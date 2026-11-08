@@ -1102,7 +1102,7 @@ function autoferryman:create_instance()
 
     for _, location in locations do
         self.temp_tween(location.CFrame, false, 200);
-        task.wait(0.5)
+        task.wait(1.5)
         local remote = firestarter()
         if remote then
             print("Fired")
@@ -1110,7 +1110,7 @@ function autoferryman:create_instance()
         else
             print("No remote")
         end
-        task.wait(0.5)
+        task.wait(1.5)
     end
 
   --  self.temp_tween(CFrame.new(-4103.17822, 65.7434998, 9413.24609), false, 200);
