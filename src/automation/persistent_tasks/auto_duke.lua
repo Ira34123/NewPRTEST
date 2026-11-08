@@ -250,6 +250,16 @@ function autoduke:create_instance()
         task.wait();
     end;
 
+        aztup.flags["m1_hold"] = false;
+    if aztup_toggles["m1_hold"] then
+        aztup_toggles["m1_hold"].Value = false;
+    end;
+    task.wait(0.05)
+    aztup.flags["m1_hold"] = true;
+    if aztup_toggles["m1_hold"] then
+        aztup_toggles["m1_hold"].Value = true;
+    end;
+
     services.RunService.Heartbeat:Connect(function() 
         aztup.features.m1_hold.held = hold_m1
     end)
@@ -314,6 +324,16 @@ function autoduke:kill_duke()
         end);
 
         return local_player.instance:Kick("AAAA WTF GUY IN OUR GAME !!!");
+    end;
+
+        aztup.flags["m1_hold"] = false;
+    if aztup_toggles["m1_hold"] then
+        aztup_toggles["m1_hold"].Value = false;
+    end;
+    task.wait(0.05)
+    aztup.flags["m1_hold"] = true;
+    if aztup_toggles["m1_hold"] then
+        aztup_toggles["m1_hold"].Value = true;
     end;
 
     services.RunService.Heartbeat:Connect(function() 
