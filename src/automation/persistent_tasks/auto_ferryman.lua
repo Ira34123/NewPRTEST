@@ -1188,6 +1188,15 @@ function autoferryman:kill_ferryman()
         end
     end)
     
+    aztup.flags["m1_hold"] = false;
+    if aztup_toggles["m1_hold"] then
+        aztup_toggles["m1_hold"].Value = false;
+    end;
+    task.wait(0.05)
+    aztup.flags["m1_hold"] = true;
+    if aztup_toggles["m1_hold"] then
+        aztup_toggles["m1_hold"].Value = true;
+    end;
     
     services.RunService.Heartbeat:Connect(function() 
         aztup.features.m1_hold.held = hold_m1
