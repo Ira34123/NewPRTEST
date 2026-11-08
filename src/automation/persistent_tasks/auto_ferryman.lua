@@ -1019,7 +1019,7 @@ function autoferryman:create_instance()
     local function place_campfire(location)
         local before = campfire_count()
 
-        for attempt = 1, 16 do
+        for attempt = 1, 8 do
             spoofing = true;
             spoof_at = location.MouseCF;
 
