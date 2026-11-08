@@ -1019,7 +1019,7 @@ function autoferryman:create_instance()
     local function place_campfire(location)
         local before = campfire_count()
 
-        for attempt = 1, 8 do
+        for attempt = 1, 12 do
             spoofing = true;
             spoof_at = location.MouseCF;
 
@@ -1092,6 +1092,8 @@ function autoferryman:create_instance()
             CFrame =  CFrame.new(-4101.30908203125, 65.094970703125, 9455.4716796875),
         }
     }
+
+    task.wait(0.5)
 
     for _, location in locations do
         if not campfire_exists_near(location.CFrame.Position, 12) then
