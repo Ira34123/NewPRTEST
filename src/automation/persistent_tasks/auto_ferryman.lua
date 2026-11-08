@@ -1102,7 +1102,7 @@ function autoferryman:create_instance()
 
     for _, location in locations do
         self.temp_tween(location.CFrame, false, 200);
-        task.wait(.5);
+        task.wait(1.25);
         pcall(function(...)  
             firestarter():FireServer()
         end)
