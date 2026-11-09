@@ -340,6 +340,7 @@ local autoferryman = {
     --    ["Dark Blade"]       = true,
           ["Clutching Shadow"] = true,
           ["Blood Orb"]        = true,
+          ["Scarlet Cyclone"] = true,
     --    ["Metal Eruption"]   = true,
           ["Needle Barrage"]   = true,
     --    ["Master's Flourish"] = true,
@@ -350,6 +351,8 @@ local autoferryman = {
         local backpack = local_player.instance:FindFirstChild("Backpack");
         if not backpack then return nil end
 
+        local found_mantras = {}
+        
         for _, item in backpack:GetChildren() do
             if not item.Name:match("^Mantra:") then continue end
 
@@ -358,11 +361,12 @@ local autoferryman = {
 
             local name = item:GetAttribute("DefaultName") or item.Name:match("{{(.-)}}");
             if name and self.safe_attunement_mantras[name] then
-                return item;
+                table.insert(found_mantras, item)
             end
         end
+        if #found_mantras == 0 then return nil end
 
-        return nil
+         return found_mantras[math.random(1, #found_mantras)]
     end,
     use_attunement = function(self)
         local mantra = self.get_attunement_mantra(self);
